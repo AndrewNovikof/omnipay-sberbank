@@ -1,0 +1,29 @@
+{
+    "name": "andrewnovikof/omnipay-sberbank",
+    "description": "Omnipay driver for Sberbank",
+    "type": "library",
+    "license": "MIT",
+    "authors": [{
+        "name": "AndrewNovikof",
+        "email": "andrewnovikofff@gmail.com"
+    }],
+    "keywords": [
+        "laravel",
+        "sberbank",
+        "acquiring",
+        "rest",
+        "api",
+        "payment"
+    ],
+    "require": {
+        "omnipay/common": "^2.5"
+    },
+    "require-dev": {
+        "omnipay/tests": "~2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "AndrewNovikof\\Sberbank\\": "src/"
+        }
+    }
+}
