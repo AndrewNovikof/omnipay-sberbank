@@ -2,12 +2,12 @@
 
 namespace Omnipay\Sberbank\Message;
 
-class RegisterRequest extends AbstractRequest
+class PurchaseRequest extends AbstractRequest
 {
     protected $endpoint = '/register.do';
 
     /**
-     * {@inheritdoc}
+     * @return array|mixed
      */
     public function getData()
     {
@@ -92,10 +92,10 @@ class RegisterRequest extends AbstractRequest
 
     /**
      * @param mixed $data
-     * @return RegisterResponse
+     * @return AuthorizeResponse
      */
     public function sendData($data)
     {
-        return new RegisterResponse($this, $data);
+        return new AuthorizeResponse($this, $data);
     }
 }

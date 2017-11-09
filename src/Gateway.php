@@ -3,19 +3,13 @@
 namespace Omnipay\Sberbank;
 
 use Omnipay\Common\AbstractGateway;
-use Omnipay\Sberbank\Message\RegisterRequest;
+use Omnipay\Common\Message\RequestInterface;
+use Omnipay\Sberbank\Message\AuthorizeRequest;
+use Omnipay\Sberbank\Message\PurchaseRequest;
 
 /**
- * @method \Omnipay\Common\Message\RequestInterface authorize(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface completeAuthorize(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface capture(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface purchase(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface completePurchase(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface refund(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface void(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface createCard(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface updateCard(array $options = array())
- * @method \Omnipay\Common\Message\RequestInterface deleteCard(array $options = array())
+ * Class Gateway
+ * @package Omnipay\Sberbank
  */
 class Gateway extends AbstractGateway
 {
@@ -39,12 +33,64 @@ class Gateway extends AbstractGateway
         ];
     }
 
-    /**
-     * @param array $parameters
-     * @return \Omnipay\Common\Message\AbstractRequest
+    /**Start an authorize request
+     *
+     * @param array $options array of options
+     * @return RequestInterface
      */
-    public function register(array $parameters = [])
+    public function authorize(array $options = []) : RequestInterface
     {
-        return $this->createRequest(RegisterRequest::class, $parameters);
+        return $this->createRequest(AuthorizeRequest::class, $options);
+    }
+
+    /**
+     * Start a purchase request
+     *
+     * @param array $options array of options
+     * @return RequestInterface
+     */
+    public function purchase(array $options = []) : RequestInterface
+    {
+        return $this->createRequest(PurchaseRequest::class, $options);
+    }
+
+    function completeAuthorize(array $options = []) : RequestInterface
+    {
+        // TODO: Implement completeAuthorize() method.
+    }
+
+    function refund(array $options = []) : RequestInterface
+    {
+        // TODO: Implement refund() method.
+    }
+
+    function deleteCard(array $options = []) : RequestInterface
+    {
+        // TODO: Implement deleteCard() method.
+    }
+
+    function completePurchase(array $options = []) : RequestInterface
+    {
+        // TODO: Implement completePurchase() method.
+    }
+
+    function void(array $options = []) : RequestInterface
+    {
+        // TODO: Implement void() method.
+    }
+
+    function capture(array $options = []) : RequestInterface
+    {
+        // TODO: Implement capture() method.
+    }
+
+    function createCard(array $options = []) : RequestInterface
+    {
+        // TODO: Implement createCard() method.
+    }
+
+    function updateCard(array $options = []) : RequestInterface
+    {
+        // TODO: Implement updateCard() method.
     }
 }

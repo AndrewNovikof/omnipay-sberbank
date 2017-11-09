@@ -4,7 +4,7 @@ namespace Omnipay\Sberbank\Message;
 
 use Omnipay\Common\Message\RedirectResponseInterface;
 
-class RegisterResponse extends AbstractResponse implements RedirectResponseInterface
+class AuthorizeResponse extends AbstractResponse implements RedirectResponseInterface
 {
     /**
      * {@inheritdoc}
