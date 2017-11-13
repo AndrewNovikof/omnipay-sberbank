@@ -13,12 +13,13 @@ class AuthorizeRequest extends AbstractRequest
     {
         $this->validate('username', 'password', 'orderNumber', 'amount', 'returnUrl');
 
-        $data = [];
-        $data['username'] = $this->getUserName();
-        $data['password'] = $this->getPassword();
-        $data['orderNumber'] = $this->getTransactionId();
-        $data['amount'] = $this->getAmountInteger();
-        $data['returnUrl'] = $this->getReturnUrl();
+        $data = [
+            'username' => $this->getUserName(),
+            'password' => $this->getPassword(),
+            'orderNumber' => $this->getTransactionId(),
+            'amount' => $this->getAmountInteger(),
+            'returnUrl' => $this->getReturnUrl()
+        ];
 
         if ($currency = $this->getCurrency()) {
             $data['currency'] = $currency;

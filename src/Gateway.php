@@ -5,7 +5,6 @@ namespace Omnipay\Sberbank;
 use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\Message\RequestInterface;
 use Omnipay\Sberbank\Message\AuthorizeRequest;
-use Omnipay\Sberbank\Message\PurchaseRequest;
 
 /**
  * Class Gateway
@@ -51,7 +50,7 @@ class Gateway extends AbstractGateway
      */
     public function purchase(array $options = []) : RequestInterface
     {
-        return $this->createRequest(PurchaseRequest::class, $options);
+        return $this->createRequest(AuthorizeRequest::class, $options);
     }
 
     function completeAuthorize(array $options = []) : RequestInterface

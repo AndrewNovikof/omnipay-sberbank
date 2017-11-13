@@ -3,9 +3,20 @@
 namespace Omnipay\Sberbank\Message;
 
 use Omnipay\Common\Message\RedirectResponseInterface;
+use Omnipay\Common\Message\RequestInterface;
 
 class AuthorizeResponse extends AbstractResponse implements RedirectResponseInterface
 {
+
+    public function __construct(RequestInterface $request, $data)
+    {
+        parent::__construct($request, $data);
+        if ($data->errorCode != 0) {
+            $this->code = ( string ) $this->data->errorCode;
+            $this->data = ( string ) $this->data->errorMessage;
+        }
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -19,7 +30,7 @@ class AuthorizeResponse extends AbstractResponse implements RedirectResponseInte
      */
     public function isRedirect()
     {
-        return $this->data->formUrl != '';
+        return true;
     }
 
     /**
@@ -27,7 +38,7 @@ class AuthorizeResponse extends AbstractResponse implements RedirectResponseInte
      */
     public function getRedirectUrl()
     {
-        return (string) $this->data->formUrl;
+        return (string)$this->data->formUrl;
     }
 
     /**
@@ -42,7 +53,8 @@ class AuthorizeResponse extends AbstractResponse implements RedirectResponseInte
     /**
      * {@inheritdoc}
      */
-    public function getRedirectData() {
+    public function getRedirectData()
+    {
         return null;
     }
 
@@ -51,6 +63,22 @@ class AuthorizeResponse extends AbstractResponse implements RedirectResponseInte
      */
     public function getTransactionId()
     {
-        return (string) $this->data->orderId;
+        return (string)$this->data->orderId;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getMessage()
+    {
+        return $this->data->errorMessage;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCode()
+    {
+        return $this->data->errorCode;
     }
 }
