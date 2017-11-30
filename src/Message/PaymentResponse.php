@@ -3,20 +3,9 @@
 namespace Omnipay\Sberbank\Message;
 
 use Omnipay\Common\Message\RedirectResponseInterface;
-use Omnipay\Common\Message\RequestInterface;
 
-class AuthorizeResponse extends AbstractResponse implements RedirectResponseInterface
+class PaymentResponse extends AbstractResponse implements RedirectResponseInterface
 {
-
-    public function __construct(RequestInterface $request, $data)
-    {
-        parent::__construct($request, $data);
-        if ($data->errorCode != 0) {
-            $this->code = ( string ) $this->data->errorCode;
-            $this->data = ( string ) $this->data->errorMessage;
-        }
-    }
-
     /**
      * {@inheritdoc}
      */

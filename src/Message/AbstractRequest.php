@@ -6,6 +6,7 @@ use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
 
 abstract class AbstractRequest extends BaseAbstractRequest
 {
+
     /**
      * Get live- or testURL.
      */

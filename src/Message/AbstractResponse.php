@@ -16,9 +16,9 @@ abstract class AbstractResponse extends BaseAbstractResponse
      */
     public function __construct(RequestInterface $request, $data) {
         parent::__construct($request, $data);
-        if ( isset($this->data->error )) {
-            $this->code = ( string ) $this->data->error->code;
-            $this->data = ( string ) $this->data->error->message;
+        if ($data->errorCode != 0) {
+            $this->code = ( string ) $this->data->errorCode;
+            $this->data = ( string ) $this->data->errorMessage;
         }
     }
 
