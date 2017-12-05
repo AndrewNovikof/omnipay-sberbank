@@ -8,6 +8,7 @@ class PurchaseRequest extends AbstractRequest
 
     /**
      * @return array|mixed
+     * @throws \Omnipay\Common\Exception\InvalidRequestException
      */
     public function getData()
     {
@@ -21,48 +22,27 @@ class PurchaseRequest extends AbstractRequest
             'returnUrl' => $this->getReturnUrl()
         ];
 
-        if ($currency = $this->getCurrency()) {
-            $data['currency'] = $currency;
-        }
+        $additionalParams = [
+            'currency',
+            'failUrl',
+            'description',
+            'language',
+            'pageView',
+            'clientId',
+            'merchantLogin',
+            'jsonParams',
+            'sessionTimeoutSecs',
+            'expirationDate',
+            'bindingId'
+        ];
 
-        if ($failUrl = $this->getCancelUrl()) {
-            $data['failUrl'] = $failUrl;
-        }
-
-        if ($description = $this->getDescription()) {
-            $data['description'] = $description;
-        }
-
-        if ($language = $this->getLanguage()) {
-            $data['language'] = $language;
-        }
-
-        if ($pageView = $this->getPageView()) {
-            $data['pageView'] = $pageView;
-        }
-
-        if ($clientId = $this->getClientId()) {
-            $data['clientId'] = $clientId;
-        }
-
-        if ($merchantLogin = $this->getMerchantLogin()) {
-            $data['merchantLogin'] = $merchantLogin;
-        }
-
-        if ($jsonParams = $this->getJsonParams()) {
-            $data['jsonParams'] = $jsonParams;
-        }
-
-        if ($sessionTimeoutSecs = $this->getSessionTimeoutSecs()) {
-            $data['sessionTimeoutSecs'] = $sessionTimeoutSecs;
-        }
-
-        if ($expirationDate = $this->getExpirationDate()) {
-            $data['expirationDate'] = $expirationDate;
-        }
-
-        if ($bindingId = $this->getBindingId()) {
-            $data['bindingId'] = $bindingId;
+        foreach ($additionalParams as $param) {
+            if ($method = method_exists($this, 'get' . ucfirst($param))) {
+                $value = $this->{$method}();
+                if ($value) {
+                    $data[$param] = $value;
+                }
+            }
         }
 
         return $data;

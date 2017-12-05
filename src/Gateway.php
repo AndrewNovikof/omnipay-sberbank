@@ -37,7 +37,7 @@ class Gateway extends AbstractGateway
      * @param array $options array of options
      * @return RequestInterface
      */
-    public function authorize(array $options = []) : RequestInterface
+    public function authorize(array $options = []): RequestInterface
     {
         return $this->createRequest(AuthorizeRequest::class, $options);
     }
@@ -48,47 +48,47 @@ class Gateway extends AbstractGateway
      * @param array $options array of options
      * @return RequestInterface
      */
-    public function purchase(array $options = []) : RequestInterface
+    public function purchase(array $options = []): RequestInterface
     {
         return $this->createRequest(AuthorizeRequest::class, $options);
     }
 
-    function completeAuthorize(array $options = []) : RequestInterface
+    function completeAuthorize(array $options = []): RequestInterface
     {
         // TODO: Implement completeAuthorize() method.
     }
 
-    function refund(array $options = []) : RequestInterface
+    function refund(array $options = []): RequestInterface
     {
         // TODO: Implement refund() method.
     }
 
-    function deleteCard(array $options = []) : RequestInterface
+    function deleteCard(array $options = []): RequestInterface
     {
         // TODO: Implement deleteCard() method.
     }
 
-    function completePurchase(array $options = []) : RequestInterface
+    function completePurchase(array $options = []): RequestInterface
     {
         // TODO: Implement completePurchase() method.
     }
 
-    function void(array $options = []) : RequestInterface
+    function void(array $options = []): RequestInterface
     {
         // TODO: Implement void() method.
     }
 
-    function capture(array $options = []) : RequestInterface
+    function capture(array $options = []): RequestInterface
     {
         // TODO: Implement capture() method.
     }
 
-    function createCard(array $options = []) : RequestInterface
+    function createCard(array $options = []): RequestInterface
     {
         // TODO: Implement createCard() method.
     }
 
-    function updateCard(array $options = []) : RequestInterface
+    function updateCard(array $options = []): RequestInterface
     {
         // TODO: Implement updateCard() method.
     }
