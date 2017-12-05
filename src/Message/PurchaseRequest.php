@@ -12,10 +12,10 @@ class PurchaseRequest extends AbstractRequest
      */
     public function getData()
     {
-        $this->validate('username', 'password', 'orderNumber', 'amount', 'returnUrl');
+        $this->validate('userName', 'password', 'orderNumber', 'amount', 'returnUrl');
 
         $data = [
-            'username' => $this->getUserName(),
+            'userName' => $this->getUserName(),
             'password' => $this->getPassword(),
             'orderNumber' => $this->getTransactionId(),
             'amount' => $this->getAmountInteger(),

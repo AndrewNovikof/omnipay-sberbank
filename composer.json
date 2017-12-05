@@ -16,8 +16,7 @@
         "payment"
     ],
     "require": {
-        "omnipay/common": "^2.5",
-        "symfony/event-dispatcher": "~4.0.1"
+        "omnipay/common": "^2.5"
     },
     "require-dev": {
         "omnipay/tests": "^2.1",

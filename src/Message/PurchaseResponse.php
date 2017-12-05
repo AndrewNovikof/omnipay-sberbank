@@ -9,7 +9,7 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
 	/**
 	 * @var string
 	 */
-    protected $endpoint = 'https://payment.quickpay.net';
+    protected $endpoint;
 
 	/**
 	 * @return bool
