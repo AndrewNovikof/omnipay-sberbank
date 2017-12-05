@@ -51,7 +51,7 @@ class PurchaseRequest extends AbstractRequest
     /**
      * @return mixed
      */
-    public function getTransactionId()
+    public function getOrderNumber()
     {
         return $this->getParameter('orderNumber');
     }
@@ -60,7 +60,7 @@ class PurchaseRequest extends AbstractRequest
      * @param $value
      * @return \Omnipay\Common\Message\AbstractRequest
      */
-    public function setTransactionId($value)
+    public function setOrderNumber($value)
     {
         return $this->setParameter('orderNumber', $value);
     }
@@ -68,7 +68,7 @@ class PurchaseRequest extends AbstractRequest
     /**
      * @return mixed
      */
-    public function getCancelUrl()
+    public function getFailUrl()
     {
         return $this->getParameter('failUrl');
     }
@@ -77,7 +77,7 @@ class PurchaseRequest extends AbstractRequest
      * @param $value
      * @return \Omnipay\Common\Message\AbstractRequest
      */
-    public function setCancelUrl($value)
+    public function setFailUrl($value)
     {
         return $this->setParameter('failUrl', $value);
     }
