@@ -4,7 +4,7 @@ namespace Omnipay\Sberbank\Message;
 
 class PurchaseRequest extends AbstractRequest
 {
-    protected $endpoint = '/registerPreAuth.do';
+    protected $method = 'registerPreAuth.do';
 
     /**
      * @return array|mixed
@@ -47,6 +47,12 @@ class PurchaseRequest extends AbstractRequest
         }
 
         return $data;
+    }
+
+
+    public function getMethod()
+    {
+        return $this->method;
     }
 
     /**
