@@ -7,14 +7,27 @@ use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
 abstract class AbstractRequest extends BaseAbstractRequest
 {
     /**
+     * Method name from bank API
+     *
+     * @return string
+     */
+    abstract protected function getMethod();
+
+    /**
+     * @param $data
+     * @return mixed
+     */
+    public abstract function sendData($data);
+
+    /**
      * Get live- or testURL.
      */
     public function getUrl()
     {
         if ($this->getTestMode()) {
-            return 'https://3dsec.sberbank.ru/payment/rest';
+            return 'https://3dsec.sberbank.ru/payment/rest/';
         } else {
-            return 'https://securepayments.sberbank.ru/payment/rest';
+            return 'https://securepayments.sberbank.ru/payment/rest/';
         }
     }
 
@@ -60,4 +73,13 @@ abstract class AbstractRequest extends BaseAbstractRequest
         return $this->setParameter('userName', $value);
     }
 
+    /**
+     * Get Request headers
+     *
+     * @return array
+     */
+    public function getHeaders()
+    {
+        return [];
+    }
 }

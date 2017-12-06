@@ -225,7 +225,17 @@ class PurchaseRequest extends AbstractRequest
      */
     public function sendData($data)
     {
-        return new PaymentResponse($this, $data);
+        $url = $this->getUrl() . $this->getMethod();
+        $httpRequest = $this->httpClient->createRequest(
+            $this->getHttpMethod(),
+            $url,
+            $this->getHeaders(),
+            $data
+        );
+
+        $httpResponse = $httpRequest->send();
+
+        return new PaymentResponse($this, $httpResponse);
     }
 
     /**
