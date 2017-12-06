@@ -28,11 +28,76 @@ class Gateway extends AbstractGateway
         return [
             'userName' => '',
             'password' => '',
-            'testMode' => false
+            'testMode' => false,
+            'endPoint' => ''
         ];
     }
 
-    /**Start an authorize request
+    /**
+     * Get endpoint URL
+     *
+     * @return string
+     */
+    public function getEndpoint()
+    {
+        return $this->getParameter('endpoint');
+    }
+
+    /**
+     * Set endpoint URL
+     *
+     * @param string $endpoint
+     * @return $this
+     */
+    public function setEndpoint($endpoint)
+    {
+        return $this->setParameter('endpoint', $endpoint);
+    }
+
+    /**
+     * Get gateway user name
+     *
+     * @return string
+     */
+    public function getUserName()
+    {
+        return $this->getParameter('userName');
+    }
+
+    /**
+     * Set gateway user name
+     *
+     * @param string $userName
+     * @return $this
+     */
+    public function setUserName($userName)
+    {
+        return $this->setParameter('userName', $userName);
+    }
+
+    /**
+     * Get gateway password
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->getParameter('password');
+    }
+
+    /**
+     * Set gateway password
+     *
+     * @param string $password
+     * @return $this
+     */
+    public function setPassword($password)
+    {
+        return $this->setParameter('password', $password);
+    }
+
+    /**
+     * Start an authorize request
      *
      * @param array $options array of options
      * @return RequestInterface
