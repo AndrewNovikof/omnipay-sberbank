@@ -6,7 +6,6 @@ use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
 
 abstract class AbstractRequest extends BaseAbstractRequest
 {
-
     /**
      * Get live- or testURL.
      */
@@ -20,6 +19,8 @@ abstract class AbstractRequest extends BaseAbstractRequest
     }
 
     /**
+     * Set gateway password of merchant account
+     *
      * @return mixed
      */
     public function getPassword()
@@ -28,15 +29,19 @@ abstract class AbstractRequest extends BaseAbstractRequest
     }
 
     /**
-     * @param $value
+     * Set gateway password of merchant account
+     *
+     * @param $password
      * @return BaseAbstractRequest
      */
-    public function setPassword($value)
+    public function setPassword($password)
     {
-        return $this->setParameter('password', $value);
+        return $this->setParameter('password', $password);
     }
 
     /**
+     * Get gateway password of merchant
+     *
      * @return mixed
      */
     public function getUserName()
@@ -45,6 +50,8 @@ abstract class AbstractRequest extends BaseAbstractRequest
     }
 
     /**
+     * Set gateway userName of merchant
+     *
      * @param $value
      * @return BaseAbstractRequest
      */

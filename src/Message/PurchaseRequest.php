@@ -226,4 +226,14 @@ class PurchaseRequest extends AbstractRequest
     {
         return new PaymentResponse($this, $data);
     }
+
+    /**
+     * Sberbank acquiring request the currency in the minimal payment units
+     *
+     * @return int
+     */
+    public function getCurrencyDecimalPlaces()
+    {
+        return 0;
+    }
 }
