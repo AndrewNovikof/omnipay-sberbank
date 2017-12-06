@@ -38,7 +38,7 @@ class PurchaseRequest extends AbstractRequest
 
         foreach ($additionalParams as $param) {
             $method = 'get' . ucfirst($param);
-            if ($method = method_exists($this, $method)) {
+            if (method_exists($this, $method)) {
                 $value = $this->{$method}();
                 if ($value) {
                     $data[$param] = $value;
