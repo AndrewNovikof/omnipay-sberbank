@@ -82,4 +82,12 @@ abstract class AbstractRequest extends BaseAbstractRequest
     {
         return [];
     }
+
+    /**
+     * @return string
+     */
+    public function getHttpMethod()
+    {
+        return 'POST';
+    }
 }
