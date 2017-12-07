@@ -30,8 +30,8 @@ class PreAuthorizeResponse extends AbstractResponse implements RedirectResponseI
     public function __construct(RequestInterface $request, $data)
     {
         parent::__construct($request, $data);
-        $data->formUrl ? $this->formUrl = (string)$data->formUrl : $this->formUrl = null;
-        $data->orderId ? $this->orderId = (string)$data->orderId : $this->orderId = null;
+        array_key_exists('formUrl', $data) ? $this->formUrl = (string)$data['formUrl'] : $this->formUrl = null;
+        array_key_exists('orderId', $data) ? $this->orderId = (string)$data['orderId'] : $this->orderId = null;
     }
 
 	/**

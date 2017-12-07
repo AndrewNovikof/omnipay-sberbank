@@ -23,8 +23,8 @@ abstract class AbstractResponse extends BaseAbstractResponse
     public function __construct(RequestInterface $request, $data)
     {
         parent::__construct($request, $data);
-        $data->errorCode ? $this->errorCode = (string)$data->errorCode : $this->errorCode = null;
-        $data->errorMessage ? $this->errorMessage = (string)$data->errorMessage : $this->errorMessage = null;
+        array_key_exists('errorCode', $data) ? $this->errorCode = (string)$data['errorCode'] : $this->errorCode = null;
+        array_key_exists('errorMessage', $data) ? $this->errorMessage = (string)$data['errorMessage'] : $this->errorMessage = null;
     }
 
     /**
@@ -32,7 +32,7 @@ abstract class AbstractResponse extends BaseAbstractResponse
      */
     public function getMessage()
     {
-        return $this->isSuccessful() ? $this->errorMessage : null;
+        return $this->errorMessage;
     }
 
     /**
@@ -40,7 +40,7 @@ abstract class AbstractResponse extends BaseAbstractResponse
      */
     public function getCode()
     {
-        return $this->isSuccessful() ? $this->errorCode : null;
+        return $this->errorCode;
     }
 
     /**
