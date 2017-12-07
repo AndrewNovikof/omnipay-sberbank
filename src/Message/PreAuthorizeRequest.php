@@ -227,7 +227,7 @@ class PreAuthorizeRequest extends AbstractRequest
 
     /**
      * @param mixed $data
-     * @return PaymentResponse
+     * @return AuthorizeResponse
      */
     public function sendData($data)
     {
@@ -241,7 +241,7 @@ class PreAuthorizeRequest extends AbstractRequest
 
         $httpResponse = $httpRequest->send();
 
-        return new PaymentResponse($this, $httpResponse);
+        return new AuthorizeResponse($this, $httpResponse);
     }
 
     /**

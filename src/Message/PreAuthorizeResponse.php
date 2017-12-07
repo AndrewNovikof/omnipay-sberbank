@@ -3,20 +3,35 @@
 namespace Omnipay\Sberbank\Message;
 
 use Omnipay\Common\Message\RedirectResponseInterface;
+use Omnipay\Common\Message\RequestInterface;
 
 class PreAuthorizeResponse extends AbstractResponse implements RedirectResponseInterface
 {
-	/**
-	 * @var string
-	 */
-    protected $endpoint;
+    /**
+     * The URL of the payment form to which the client's browser should be redirected.
+     *
+     * @var string
+     */
+    protected $formUrl;
 
-	/**
-	 * @return bool
-	 */
-    public function isSuccessful()
+    /**
+     * The order number in the payment system. Unique within the system.
+     *
+     * @var string
+     */
+    protected $orderId;
+
+    /**
+     * PreAuthorizeResponse constructor.
+     *
+     * @param RequestInterface $request
+     * @param $data
+     */
+    public function __construct(RequestInterface $request, $data)
     {
-        return false;
+        parent::__construct($request, $data);
+        $data->formUrl ? $this->formUrl = (string)$data->formUrl : $this->formUrl = null;
+        $data->orderId ? $this->orderId = (string)$data->orderId : $this->orderId = null;
     }
 
 	/**
@@ -24,7 +39,7 @@ class PreAuthorizeResponse extends AbstractResponse implements RedirectResponseI
 	 */
     public function isRedirect()
     {
-        return $this->isSuccessful();
+        return false;
     }
 
 	/**
@@ -32,7 +47,7 @@ class PreAuthorizeResponse extends AbstractResponse implements RedirectResponseI
 	 */
     public function getRedirectUrl()
     {
-        return $this->endpoint;
+        return $this->formUrl;
     }
 
 	/**
@@ -49,5 +64,13 @@ class PreAuthorizeResponse extends AbstractResponse implements RedirectResponseI
     public function getRedirectData()
     {
         return $this->data;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOrderId()
+    {
+        return $this->orderId;
     }
 }

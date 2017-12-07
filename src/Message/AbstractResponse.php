@@ -10,7 +10,12 @@ abstract class AbstractResponse extends BaseAbstractResponse
     /**
      * @var string
      */
-    protected $code;
+    protected $errorCode;
+
+    /**
+     * @var
+     */
+    protected $errorMessage;
 
     /**
      * {@inheritdoc}
@@ -18,10 +23,8 @@ abstract class AbstractResponse extends BaseAbstractResponse
     public function __construct(RequestInterface $request, $data)
     {
         parent::__construct($request, $data);
-        if ($data->errorCode) {
-            $this->code = (string)$data->errorCode;
-            $this->data = (string)$data->errorMessage;
-        }
+        $data->errorCode ? $this->errorCode = (string)$data->errorCode : $this->errorCode = null;
+        $data->errorMessage ? $this->errorMessage = (string)$data->errorMessage : $this->errorMessage = null;
     }
 
     /**
@@ -29,7 +32,7 @@ abstract class AbstractResponse extends BaseAbstractResponse
      */
     public function getMessage()
     {
-        return $this->isSuccessful() ? $this->data : null;
+        return $this->isSuccessful() ? $this->errorMessage : null;
     }
 
     /**
@@ -37,7 +40,7 @@ abstract class AbstractResponse extends BaseAbstractResponse
      */
     public function getCode()
     {
-        return $this->isSuccessful() ? $this->code : null;
+        return $this->isSuccessful() ? $this->errorCode : null;
     }
 
     /**
@@ -45,6 +48,6 @@ abstract class AbstractResponse extends BaseAbstractResponse
      */
     public function isSuccessful()
     {
-        return $this->data;
+        return $this->errorCode === 0;
     }
 }
