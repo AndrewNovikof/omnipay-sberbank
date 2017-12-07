@@ -2,7 +2,7 @@
 
 namespace Omnipay\Sberbank\Message;
 
-class PurchaseRequest extends AbstractRequest
+class PreAuthorizeRequest extends AbstractRequest
 {
     protected $method = 'registerPreAuth.do';
 
