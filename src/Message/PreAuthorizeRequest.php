@@ -241,7 +241,7 @@ class PreAuthorizeRequest extends AbstractRequest
 
         $httpResponse = $httpRequest->send();
 
-        return new AuthorizeResponse($this, $httpResponse);
+        return new AuthorizeResponse($this, json_decode($httpResponse->getBody(true), true));
     }
 
     /**
