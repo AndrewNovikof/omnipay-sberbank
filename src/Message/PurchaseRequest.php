@@ -231,7 +231,7 @@ class PurchaseRequest extends AbstractRequest
      */
     public function sendData($data)
     {
-        $url = $this->getEndpoint() . $this->getMethod();
+        $url = $this->getEndPoint() . $this->getMethod();
         $httpRequest = $this->httpClient->createRequest(
             $this->getHttpMethod(),
             $url,

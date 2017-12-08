@@ -42,7 +42,7 @@ class Gateway extends AbstractGateway
      */
     public function setTestMode($testMode)
     {
-        $this->setEndpoint($testMode ? 'https://3dsec.sberbank.ru/payment/rest/' : 'https://securepayments.sberbank.ru/payment/rest/');
+        $this->setEndPoint($testMode ? 'https://3dsec.sberbank.ru/payment/rest/' : 'https://securepayments.sberbank.ru/payment/rest/');
 
         return $this->setParameter('testMode', $testMode);
     }
@@ -52,20 +52,20 @@ class Gateway extends AbstractGateway
      *
      * @return string
      */
-    public function getEndpoint()
+    public function getEndPoint()
     {
-        return $this->getParameter('endpoint');
+        return $this->getParameter('endPoint');
     }
 
     /**
      * Set endpoint URL
      *
-     * @param string $endpoint
+     * @param string $endPoint
      * @return $this
      */
-    public function setEndpoint($endpoint)
+    public function setEndPoint($endPoint)
     {
-        return $this->setParameter('endpoint', $endpoint);
+        return $this->setParameter('endPoint', $endPoint);
     }
 
     /**
@@ -133,7 +133,7 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * Start complete Authorize request 
+     * Start complete Authorize request
      *
      * @param array $options
      * @return RequestInterface

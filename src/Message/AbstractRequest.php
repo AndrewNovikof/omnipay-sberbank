@@ -24,20 +24,20 @@ abstract class AbstractRequest extends BaseAbstractRequest
      *
      * @return string
      */
-    public function getEndpoint()
+    public function getEndPoint()
     {
-        return $this->getParameter('endpoint');
+        return $this->getParameter('endPoint');
     }
 
     /**
      * Set endpoint URL
      *
-     * @param string $endpoint
+     * @param string $endPoint
      * @return \Omnipay\Common\Message\AbstractRequest
      */
-    public function setEndpoint($endpoint)
+    public function setEndPoint($endPoint)
     {
-        return $this->setParameter('endpoint', $endpoint);
+        return $this->setParameter('endPoint', $endPoint);
     }
 
     /**
