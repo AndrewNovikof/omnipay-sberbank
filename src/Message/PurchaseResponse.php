@@ -5,7 +5,7 @@ namespace Omnipay\Sberbank\Message;
 use Omnipay\Common\Message\RedirectResponseInterface;
 use Omnipay\Common\Message\RequestInterface;
 
-class PreAuthorizeResponse extends AbstractResponse implements RedirectResponseInterface
+class PurchaseResponse extends AbstractResponse implements RedirectResponseInterface
 {
     /**
      * The URL of the payment form to which the client's browser should be redirected.
@@ -39,7 +39,7 @@ class PreAuthorizeResponse extends AbstractResponse implements RedirectResponseI
 	 */
     public function isRedirect()
     {
-        return false;
+        return $this->formUrl ? true : false;
     }
 
 	/**

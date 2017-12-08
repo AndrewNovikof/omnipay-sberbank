@@ -2,7 +2,7 @@
 
 namespace Omnipay\Sberbank\Message;
 
-class AuthorizeRequest extends PreAuthorizeRequest
+class AuthorizeRequest extends PurchaseRequest
 {
     public function getMethod()
     {

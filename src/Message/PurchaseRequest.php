@@ -2,10 +2,8 @@
 
 namespace Omnipay\Sberbank\Message;
 
-class PreAuthorizeRequest extends AbstractRequest
+class PurchaseRequest extends AbstractRequest
 {
-    protected $method = 'registerPreAuth.do';
-
     /**
      * @return array|mixed
      * @throws \Omnipay\Common\Exception\InvalidRequestException
@@ -49,10 +47,12 @@ class PreAuthorizeRequest extends AbstractRequest
         return $data;
     }
 
-
+    /**
+     * @return string
+     */
     public function getMethod()
     {
-        return $this->method;
+        return 'registerPreAuth.do';
     }
 
     /**
@@ -231,7 +231,7 @@ class PreAuthorizeRequest extends AbstractRequest
      */
     public function sendData($data)
     {
-        $url = $this->getUrl() . $this->getMethod();
+        $url = $this->getEndpoint() . $this->getMethod();
         $httpRequest = $this->httpClient->createRequest(
             $this->getHttpMethod(),
             $url,

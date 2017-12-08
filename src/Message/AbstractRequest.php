@@ -20,15 +20,24 @@ abstract class AbstractRequest extends BaseAbstractRequest
     public abstract function sendData($data);
 
     /**
-     * Get live- or testURL.
+     * Get endpoint URL
+     *
+     * @return string
      */
-    public function getUrl()
+    public function getEndpoint()
     {
-        if ($this->getTestMode()) {
-            return 'https://3dsec.sberbank.ru/payment/rest/';
-        } else {
-            return 'https://securepayments.sberbank.ru/payment/rest/';
-        }
+        return $this->getParameter('endpoint');
+    }
+
+    /**
+     * Set endpoint URL
+     *
+     * @param string $endpoint
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
+    public function setEndpoint($endpoint)
+    {
+        return $this->setParameter('endpoint', $endpoint);
     }
 
     /**

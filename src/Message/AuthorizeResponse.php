@@ -2,7 +2,7 @@
 
 namespace Omnipay\Sberbank\Message;
 
-class AuthorizeResponse extends PreAuthorizeResponse
+class AuthorizeResponse extends PurchaseResponse
 {
     /**
      * @return bool
