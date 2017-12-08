@@ -2,6 +2,8 @@
 
 namespace Omnipay\Sberbank\Message;
 
+use Omnipay\Sberbank\Gateway;
+
 class AuthorizeResponse extends PurchaseResponse
 {
     /**

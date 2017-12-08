@@ -2,6 +2,7 @@
 
 namespace Omnipay\Sberbank\Message;
 
+use Omnipay\Common\Exception\RuntimeException;
 use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
 
 abstract class AbstractRequest extends BaseAbstractRequest
@@ -77,6 +78,40 @@ abstract class AbstractRequest extends BaseAbstractRequest
     }
 
     /**
+     * @return mixed
+     */
+    public function getOrderNumber()
+    {
+        return $this->getParameter('orderNumber');
+    }
+
+    /**
+     * @param $value
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
+    public function setOrderNumber($value)
+    {
+        return $this->setParameter('orderNumber', $value);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLanguage()
+    {
+        return $this->getParameter('language');
+    }
+
+    /**
+     * @param $value
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
+    public function setLanguage($value)
+    {
+        return $this->setParameter('language', $value);
+    }
+
+    /**
      * Get Request headers
      *
      * @return array
@@ -106,7 +141,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
 
     /**
      * @param mixed $data
-     * @return AuthorizeResponse
+     * @return object|\Omnipay\Common\Message\ResponseInterface
      */
     public function sendData($data)
     {
@@ -117,9 +152,14 @@ abstract class AbstractRequest extends BaseAbstractRequest
             $this->getHeaders(),
             $data
         );
-
         $httpResponse = $httpRequest->send();
 
-        return new AuthorizeResponse($this, json_decode($httpResponse->getBody(true), true));
+        $responseClassName = preg_replace('/Request/', 'Response', get_class($this));
+        $reflection = new \ReflectionClass($responseClassName);
+        if(!$reflection->isInstantiable()){
+            throw new RuntimeException('Class '.preg_replace('/Request/', 'Response', get_class($this)).' not found');
+        }
+
+        return $reflection->newInstance($this, json_decode($httpResponse->getBody(true), true));
     }
 }

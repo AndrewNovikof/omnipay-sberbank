@@ -3,8 +3,10 @@
 namespace Omnipay\Sberbank;
 
 use Omnipay\Common\AbstractGateway;
+use Omnipay\Common\Exception\BadMethodCallException;
 use Omnipay\Common\Message\RequestInterface;
 use Omnipay\Sberbank\Message\AuthorizeRequest;
+use Omnipay\Sberbank\Message\CompleteAuthorizeRequest;
 use Omnipay\Sberbank\Message\PurchaseRequest;
 
 /**
@@ -140,7 +142,7 @@ class Gateway extends AbstractGateway
      */
     function completeAuthorize(array $options = []): RequestInterface
     {
-        // TODO: Implement completeAuthorize() method.
+        return $this->createRequest(CompleteAuthorizeRequest::class, $options);
     }
 
     function refund(array $options = []): RequestInterface
@@ -153,9 +155,13 @@ class Gateway extends AbstractGateway
         // TODO: Implement deleteCard() method.
     }
 
-    function completePurchase(array $options = []): RequestInterface
+    /**
+     * @param array $options
+     * @throws BadMethodCallException
+     */
+    function completePurchase(array $options = [])
     {
-        // TODO: Implement completePurchase() method.
+        throw new BadMethodCallException('Method completePurchase($options) not supported');
     }
 
     function void(array $options = []): RequestInterface

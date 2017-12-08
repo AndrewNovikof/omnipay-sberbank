@@ -15,8 +15,8 @@ class PurchaseRequest extends AbstractRequest
         $data = [
             'userName' => $this->getUserName(),
             'password' => $this->getPassword(),
-            'orderNumber' => $this->getTransactionId(),
-            'amount' => $this->getAmountInteger(),
+            'orderNumber' => $this->getOrderNumber(),
+            'amount' => $this->getAmount(),
             'returnUrl' => $this->getReturnUrl()
         ];
 
@@ -52,24 +52,7 @@ class PurchaseRequest extends AbstractRequest
      */
     public function getMethod()
     {
-        return 'registerPreAuth.do';
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getOrderNumber()
-    {
-        return $this->getParameter('orderNumber');
-    }
-
-    /**
-     * @param $value
-     * @return \Omnipay\Common\Message\AbstractRequest
-     */
-    public function setOrderNumber($value)
-    {
-        return $this->setParameter('orderNumber', $value);
+        return 'register.do';
     }
 
     /**
@@ -87,23 +70,6 @@ class PurchaseRequest extends AbstractRequest
     public function setFailUrl($value)
     {
         return $this->setParameter('failUrl', $value);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLanguage()
-    {
-        return $this->getParameter('language');
-    }
-
-    /**
-     * @param $value
-     * @return \Omnipay\Common\Message\AbstractRequest
-     */
-    public function setLanguage($value)
-    {
-        return $this->setParameter('language', $value);
     }
 
     /**
