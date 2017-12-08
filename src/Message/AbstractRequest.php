@@ -14,12 +14,6 @@ abstract class AbstractRequest extends BaseAbstractRequest
     abstract protected function getMethod();
 
     /**
-     * @param $data
-     * @return mixed
-     */
-    public abstract function sendData($data);
-
-    /**
      * Get endpoint URL
      *
      * @return string
@@ -98,5 +92,34 @@ abstract class AbstractRequest extends BaseAbstractRequest
     public function getHttpMethod()
     {
         return 'POST';
+    }
+
+    /**
+     * Sberbank acquiring request the currency in the minimal payment units
+     *
+     * @return int
+     */
+    public function getCurrencyDecimalPlaces()
+    {
+        return 0;
+    }
+
+    /**
+     * @param mixed $data
+     * @return AuthorizeResponse
+     */
+    public function sendData($data)
+    {
+        $url = $this->getEndPoint() . $this->getMethod();
+        $httpRequest = $this->httpClient->createRequest(
+            $this->getHttpMethod(),
+            $url,
+            $this->getHeaders(),
+            $data
+        );
+
+        $httpResponse = $httpRequest->send();
+
+        return new AuthorizeResponse($this, json_decode($httpResponse->getBody(true), true));
     }
 }

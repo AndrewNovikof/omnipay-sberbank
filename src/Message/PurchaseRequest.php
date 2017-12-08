@@ -224,33 +224,4 @@ class PurchaseRequest extends AbstractRequest
     {
         return $this->setParameter('bindingId', $value);
     }
-
-    /**
-     * @param mixed $data
-     * @return AuthorizeResponse
-     */
-    public function sendData($data)
-    {
-        $url = $this->getEndPoint() . $this->getMethod();
-        $httpRequest = $this->httpClient->createRequest(
-            $this->getHttpMethod(),
-            $url,
-            $this->getHeaders(),
-            $data
-        );
-
-        $httpResponse = $httpRequest->send();
-
-        return new AuthorizeResponse($this, json_decode($httpResponse->getBody(true), true));
-    }
-
-    /**
-     * Sberbank acquiring request the currency in the minimal payment units
-     *
-     * @return int
-     */
-    public function getCurrencyDecimalPlaces()
-    {
-        return 0;
-    }
 }
