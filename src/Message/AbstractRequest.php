@@ -80,18 +80,18 @@ abstract class AbstractRequest extends BaseAbstractRequest
     /**
      * @return mixed
      */
-    public function getOrderNumber()
+    public function getOrderId()
     {
-        return $this->getParameter('orderNumber');
+        return $this->getParameter('orderId');
     }
 
     /**
      * @param $value
      * @return \Omnipay\Common\Message\AbstractRequest
      */
-    public function setOrderNumber($value)
+    public function setOrderId($value)
     {
-        return $this->setParameter('orderNumber', $value);
+        return $this->setParameter('orderId', $value);
     }
 
     /**
@@ -161,5 +161,26 @@ abstract class AbstractRequest extends BaseAbstractRequest
         }
 
         return $reflection->newInstance($this, json_decode($httpResponse->getBody(true), true));
+    }
+
+    /**
+     * Add additional params to data
+     *
+     * @param array $data
+     * @param array $additionalParams
+     * @return array
+     */
+    public function specifyAdditionalParameters(array $data, array $additionalParams)
+    {
+        foreach ($additionalParams as $param) {
+            $method = 'get' . ucfirst($param);
+            if (method_exists($this, $method)) {
+                $value = $this->{$method}();
+                if ($value) {
+                    $data[$param] = $value;
+                }
+            }
+        }
+        return $data;
     }
 }

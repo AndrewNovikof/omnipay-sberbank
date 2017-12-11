@@ -34,15 +34,7 @@ class PurchaseRequest extends AbstractRequest
             'bindingId'
         ];
 
-        foreach ($additionalParams as $param) {
-            $method = 'get' . ucfirst($param);
-            if (method_exists($this, $method)) {
-                $value = $this->{$method}();
-                if ($value) {
-                    $data[$param] = $value;
-                }
-            }
-        }
+        $this->specifyAdditionalParameters($data, $additionalParams);
 
         return $data;
     }
@@ -53,6 +45,23 @@ class PurchaseRequest extends AbstractRequest
     public function getMethod()
     {
         return 'register.do';
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrderNumber()
+    {
+        return $this->getParameter('orderNumber');
+    }
+
+    /**
+     * @param $value
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
+    public function setOrderNumber($value)
+    {
+        return $this->setParameter('orderNumber', $value);
     }
 
     /**

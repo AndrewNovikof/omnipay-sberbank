@@ -2,7 +2,7 @@
 
 namespace Omnipay\Sberbank\Message;
 
-class AuthorizeResponse extends PurchaseResponse
+class VoidResponse extends AbstractResponse
 {
 
 }

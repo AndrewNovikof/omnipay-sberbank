@@ -41,7 +41,7 @@ class OrderStatusResponse extends AbstractResponse
      *
      * @return string
      */
-    public function getCardExpiration()
+    public function getExpiration()
     {
         return array_key_exists('expiration', $this->data) ? $this->data['expiration'] : null;
     }
@@ -51,7 +51,7 @@ class OrderStatusResponse extends AbstractResponse
      *
      * @return string
      */
-    public function getCardHolder()
+    public function getCardHolderName()
     {
         return array_key_exists('cardholderName', $this->data) ? $this->data['cardholderName'] : null;
     }
@@ -97,6 +97,14 @@ class OrderStatusResponse extends AbstractResponse
     }
 
     /**
+     * @return array
+     */
+    public function getBindingInfo()
+    {
+        return array_key_exists('BindingInfo', $this->data) ? $this->data['BindingInfo'] : [];
+    }
+
+    /**
      * Number (identifier) of the customer in the store system, transferred at the time of order registration.
      *
      * Is present only if the magazine is allowed to create bundles.
@@ -105,7 +113,8 @@ class OrderStatusResponse extends AbstractResponse
      */
     public function getClientId()
     {
-        return array_key_exists('clientId', $this->data) ? $this->data['clientId'] : null;
+        $bindingInfo = $this->getBindingInfo();
+        return array_key_exists('clientId', $bindingInfo) ? $bindingInfo['clientId'] : null;
     }
 
     /**
@@ -117,6 +126,7 @@ class OrderStatusResponse extends AbstractResponse
      */
     public function getBindingId()
     {
-        return array_key_exists('bindingId', $this->data) ? $this->data['bindingId'] : null;
+        $bindingInfo = $this->getBindingInfo();
+        return array_key_exists('bindingId', $bindingInfo) ? $bindingInfo['bindingId'] : null;
     }
 }

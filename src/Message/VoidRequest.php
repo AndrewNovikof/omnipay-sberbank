@@ -2,7 +2,7 @@
 
 namespace Omnipay\Sberbank\Message;
 
-class CompleteAuthorizeRequest extends AbstractRequest
+class VoidRequest extends AbstractRequest
 {
     /**
      * @return array|mixed
@@ -10,14 +10,17 @@ class CompleteAuthorizeRequest extends AbstractRequest
      */
     public function getData()
     {
-        $this->validate('userName', 'password', 'orderNumber', 'amount');
+        $this->validate('userName', 'password', 'orderId');
 
         $data = [
             'userName' => $this->getUserName(),
             'password' => $this->getPassword(),
-            'orderNumber' => $this->getOrderNumber(),
-            'amount' => $this->getAmount(),
+            'orderId' => $this->getOrderId(),
         ];
+
+        if ($language = $this->getLanguage()) {
+            $data['language'] = $language;
+        }
 
         return $data;
     }
@@ -27,6 +30,6 @@ class CompleteAuthorizeRequest extends AbstractRequest
      */
     public function getMethod()
     {
-        return 'deposit.do';
+        return 'reverse.do';
     }
 }

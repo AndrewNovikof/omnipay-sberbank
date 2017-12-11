@@ -6,8 +6,16 @@ use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\Exception\BadMethodCallException;
 use Omnipay\Common\Message\RequestInterface;
 use Omnipay\Sberbank\Message\AuthorizeRequest;
+use Omnipay\Sberbank\Message\CaptureAuthorizeRequest;
 use Omnipay\Sberbank\Message\CompleteAuthorizeRequest;
+use Omnipay\Sberbank\Message\ExtendedOrderStatusRequest;
+use Omnipay\Sberbank\Message\OrderStatusRequest;
+use Omnipay\Sberbank\Message\PaymentOrderBindingRequest;
 use Omnipay\Sberbank\Message\PurchaseRequest;
+use Omnipay\Sberbank\Message\RefundResponse;
+use Omnipay\Sberbank\Message\UpdateSSLCardListRequest;
+use Omnipay\Sberbank\Message\VerifyEnrollmentRequest;
+use Omnipay\Sberbank\Message\VoidRequest;
 
 /**
  * Class Gateway
@@ -113,7 +121,7 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * Start an authorize request
+     * Request for order registration with pre-authorization
      *
      * @param array $options array of options
      * @return RequestInterface
@@ -124,7 +132,7 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * Start a purchase request
+     * Request for order registration
      *
      * @param array $options array of options
      * @return RequestInterface
@@ -135,52 +143,139 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * Start complete Authorize request
+     * Order status request
      *
      * @param array $options
      * @return RequestInterface
      */
     function completeAuthorize(array $options = []): RequestInterface
     {
-        return $this->createRequest(CompleteAuthorizeRequest::class, $options);
+        return $this->createRequest(OrderStatusRequest::class, $options);
     }
 
+    /**
+     * Refund order request
+     *
+     * @param array $options
+     * @return RequestInterface
+     */
     function refund(array $options = []): RequestInterface
     {
-        // TODO: Implement refund() method.
+        return $this->createRequest(RefundResponse::class, $options);
+    }
+
+    /**
+     * Order status request
+     *
+     * @param array $options
+     * @return RequestInterface
+     */
+    function completePurchase(array $options = [])
+    {
+        return $this->createRequest(OrderStatusRequest::class, $options);
+    }
+
+    /**
+     * Order cancellation request
+     *
+     * @param array $options
+     * @return RequestInterface
+     */
+    function void(array $options = []): RequestInterface
+    {
+        return $this->createRequest(VoidRequest::class, $options);
+    }
+
+    /**
+     * Order completion payment request
+     *
+     * @param array $options
+     * @return RequestInterface
+     */
+    function capture(array $options = []): RequestInterface
+    {
+        return $this->createRequest(CaptureAuthorizeRequest::class, $options);
+    }
+
+    /**
+     * Order status request
+     *
+     * @param array $options
+     * @return RequestInterface
+     */
+    public function status(array $options = []): RequestInterface
+    {
+        return $this->createRequest(OrderStatusRequest::class, $options);
+    }
+
+    /**
+     * Extended order status request
+     *
+     * @param array $options
+     * @return RequestInterface
+     */
+    public function extendedStatus(array $options = []): RequestInterface
+    {
+        return $this->createRequest(ExtendedOrderStatusRequest::class, $options);
+    }
+
+    /**
+     * Request to verify the involvement of the card in 3DS
+     *
+     * @param array $options
+     * @return RequestInterface
+     */
+    public function verifyEnrollment(array $options = []): RequestInterface
+    {
+        return $this->createRequest(VerifyEnrollmentRequest::class, $options);
+    }
+
+    /**
+     * Requesting statistics on payments for the period
+     *
+     * @param array $options
+     * @return RequestInterface
+     */
+    public function getLastOrdersForMerchants(array $options = []): RequestInterface
+    {
+        return $this->createRequest(VerifyEnrollmentRequest::class, $options);
+    }
+
+    /**
+     * Request to add a card to the list of SSL-cards
+     *
+     * @param array $options
+     * @return RequestInterface
+     */
+    public function updateSSLCardList(array $options = []): RequestInterface
+    {
+        return $this->createRequest(UpdateSSLCardListRequest::class, $options);
+    }
+
+    /**
+     * Request for payment on bundles
+     *
+     * @param array $options
+     * @return RequestInterface
+     */
+    public function paymentOrderBinding(array $options = []): RequestInterface
+    {
+        return $this->createRequest(PaymentOrderBindingRequest::class, $options);
     }
 
     function deleteCard(array $options = []): RequestInterface
     {
-        // TODO: Implement deleteCard() method.
-    }
-
-    /**
-     * @param array $options
-     * @throws BadMethodCallException
-     */
-    function completePurchase(array $options = [])
-    {
-        throw new BadMethodCallException('Method completePurchase($options) not supported');
-    }
-
-    function void(array $options = []): RequestInterface
-    {
-        // TODO: Implement void() method.
-    }
-
-    function capture(array $options = []): RequestInterface
-    {
-        // TODO: Implement capture() method.
+        throw new BadMethodCallException('Method deleteCard() not supported');
     }
 
     function createCard(array $options = []): RequestInterface
     {
-        // TODO: Implement createCard() method.
+        throw new BadMethodCallException('Method createCard() not supported');
     }
 
     function updateCard(array $options = []): RequestInterface
     {
-        // TODO: Implement updateCard() method.
+        throw new BadMethodCallException('Method updateCard() not supported');
     }
+
 }
