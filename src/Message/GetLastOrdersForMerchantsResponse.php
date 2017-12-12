@@ -51,7 +51,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
     public function getOrderNumber($orderIndex = 0)
     {
         $orderStatuses = $this->getOrderStatuses();
-        return array_key_exists('orderNumber', $orderStatuses[$orderIndex]) ? $orderStatuses[$orderIndex]['orderNumber'] : null;
+        return array_key_exists('orderNumber', $orderStatuses[$orderIndex])
+            ? $orderStatuses[$orderIndex]['orderNumber'] : null;
     }
 
     /**
@@ -63,7 +64,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
     public function getOrderStatus($orderIndex = 0)
     {
         $orderStatuses = $this->getOrderStatuses();
-        return array_key_exists('orderStatus', $orderStatuses[$orderIndex]) ? $orderStatuses[$orderIndex]['orderStatus'] : null;
+        return array_key_exists('orderStatus', $orderStatuses[$orderIndex])
+            ? $orderStatuses[$orderIndex]['orderStatus'] : null;
     }
 
     /**
@@ -105,7 +107,9 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
     }
 
     /**
-     * The currency code of the payment is ISO 4217. If not specified, it is considered equal to the default currency code.
+     * The currency code of the payment is ISO 4217.
+     *
+     * If not specified, it is considered equal to the default currency code.
      *
      * @param int $orderIndex
      * @return mixed|null
@@ -113,7 +117,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
     public function getCurrency($orderIndex = 0)
     {
         $orderStatuses = $this->getOrderStatuses();
-        return array_key_exists('currency', $orderStatuses[$orderIndex]) ? $orderStatuses[$orderIndex]['currency'] : null;
+        return array_key_exists('currency', $orderStatuses[$orderIndex])
+            ? $orderStatuses[$orderIndex]['currency'] : null;
     }
 
     /**
@@ -137,7 +142,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
     public function getOrderDescription($orderIndex = 0)
     {
         $orderStatuses = $this->getOrderStatuses();
-        return array_key_exists('orderDescription', $orderStatuses[$orderIndex]) ? $orderStatuses[$orderIndex]['orderDescription'] : null;
+        return array_key_exists('orderDescription', $orderStatuses[$orderIndex])
+            ? $orderStatuses[$orderIndex]['orderDescription'] : null;
     }
 
     /**
@@ -163,7 +169,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
     public function getAuthDateTime($orderIndex = 0)
     {
         $orderStatuses = $this->getOrderStatuses();
-        return array_key_exists('authDateTime', $orderStatuses[$orderIndex]) ? $orderStatuses[$orderIndex]['authDateTime'] : null;
+        return array_key_exists('authDateTime', $orderStatuses[$orderIndex])
+            ? $orderStatuses[$orderIndex]['authDateTime'] : null;
     }
 
     /**
@@ -173,7 +180,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
     public function getTerminalId($orderIndex = 0)
     {
         $orderStatuses = $this->getOrderStatuses();
-        return array_key_exists('terminalId', $orderStatuses[$orderIndex]) ? $orderStatuses[$orderIndex]['terminalId'] : null;
+        return array_key_exists('terminalId', $orderStatuses[$orderIndex])
+            ? $orderStatuses[$orderIndex]['terminalId'] : null;
     }
 
     /**
@@ -185,7 +193,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
     public function getMerchantOrderParams($orderIndex = 0)
     {
         $orderStatuses = $this->getOrderStatuses();
-        return array_key_exists('merchantOrderParams', $orderStatuses[$orderIndex]) ? $orderStatuses[$orderIndex]['merchantOrderParams'] : [];
+        return array_key_exists('merchantOrderParams', $orderStatuses[$orderIndex])
+            ? $orderStatuses[$orderIndex]['merchantOrderParams'] : [];
     }
 
     /**
@@ -223,7 +232,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
     public function getBindingInfo($orderIndex = 0)
     {
         $orderStatuses = $this->getOrderStatuses();
-        return array_key_exists('bindingInfo', $orderStatuses[$orderIndex]) ? $orderStatuses[$orderIndex]['bindingInfo'] : [];
+        return array_key_exists('bindingInfo', $orderStatuses[$orderIndex])
+            ? $orderStatuses[$orderIndex]['bindingInfo'] : [];
     }
 
     /**
@@ -232,7 +242,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
      * @param int $orderIndex
      * @return mixed|null
      */
-    public function getClientId($orderIndex = 0){
+    public function getClientId($orderIndex = 0)
+    {
         $bindingInfo = $this->getBindingInfo($orderIndex);
         return array_key_exists('clientId', $bindingInfo) ? $bindingInfo['clientId'] : null;
     }
@@ -243,7 +254,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
      * @param int $orderIndex
      * @return mixed|null
      */
-    public function getBindingId($orderIndex = 0){
+    public function getBindingId($orderIndex = 0)
+    {
         $bindingInfo = $this->getBindingInfo($orderIndex);
         return array_key_exists('bindingId', $bindingInfo) ? $bindingInfo['bindingId'] : null;
     }
@@ -257,7 +269,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
     public function getAttributes($orderIndex = 0)
     {
         $orderStatuses = $this->getOrderStatuses();
-        return array_key_exists('attributes', $orderStatuses[$orderIndex]) ? $orderStatuses[$orderIndex]['attributes'] : [];
+        return array_key_exists('attributes', $orderStatuses[$orderIndex])
+            ? $orderStatuses[$orderIndex]['attributes'] : [];
     }
 
     /**
@@ -295,7 +308,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
     public function getCardAuthInfo($orderIndex = 0)
     {
         $orderStatuses = $this->getOrderStatuses();
-        return array_key_exists('cardAuthInfo', $orderStatuses[$orderIndex]) ? $orderStatuses[$orderIndex]['cardAuthInfo'] : [];
+        return array_key_exists('cardAuthInfo', $orderStatuses[$orderIndex])
+            ? $orderStatuses[$orderIndex]['cardAuthInfo'] : [];
     }
 
     /**
@@ -304,7 +318,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
      * @param int $orderIndex
      * @return mixed|null
      */
-    public function getPan($orderIndex = 0){
+    public function getPan($orderIndex = 0)
+    {
         $cardAuthInfo = $this->getCardAuthInfo($orderIndex);
         return array_key_exists('pan', $cardAuthInfo) ? $cardAuthInfo['pan'] : null;
     }
@@ -315,7 +330,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
      * @param int $orderIndex
      * @return mixed|null
      */
-    public function getExpiration($orderIndex = 0){
+    public function getExpiration($orderIndex = 0)
+    {
         $cardAuthInfo = $this->getCardAuthInfo($orderIndex);
         return array_key_exists('expiration', $cardAuthInfo) ? $cardAuthInfo['expiration'] : null;
     }
@@ -326,7 +342,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
      * @param int $orderIndex
      * @return mixed|null
      */
-    public function getCardholderName($orderIndex = 0){
+    public function getCardholderName($orderIndex = 0)
+    {
         $cardAuthInfo = $this->getCardAuthInfo($orderIndex);
         return array_key_exists('cardholderName', $cardAuthInfo) ? $cardAuthInfo['cardholderName'] : null;
     }
@@ -339,7 +356,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
      * @param int $orderIndex
      * @return mixed|null
      */
-    public function getApprovalCode($orderIndex = 0){
+    public function getApprovalCode($orderIndex = 0)
+    {
         $cardAuthInfo = $this->getCardAuthInfo($orderIndex);
         return array_key_exists('approvalCode', $cardAuthInfo) ? $cardAuthInfo['approvalCode'] : null;
     }
@@ -353,7 +371,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
     public function getPaymentAmountInfo($index = 0)
     {
         $orderStatuses = $this->getOrderStatuses();
-        return array_key_exists('paymentAmountInfo', $orderStatuses[$index]) ? $orderStatuses[$index]['paymentAmountInfo'] : [];
+        return array_key_exists('paymentAmountInfo', $orderStatuses[$index])
+            ? $orderStatuses[$index]['paymentAmountInfo'] : [];
     }
 
     /**
@@ -362,7 +381,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
      * @param int $orderIndex
      * @return mixed|null
      */
-    public function getPaymentState($orderIndex = 0){
+    public function getPaymentState($orderIndex = 0)
+    {
         $paymentAmountInfo = $this->getPaymentAmountInfo($orderIndex);
         return array_key_exists('paymentState', $paymentAmountInfo) ? $paymentAmountInfo['paymentState'] : null;
     }
@@ -373,7 +393,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
      * @param int $orderIndex
      * @return mixed|null
      */
-    public function getApprovedAmount($orderIndex = 0){
+    public function getApprovedAmount($orderIndex = 0)
+    {
         $paymentAmountInfo = $this->getPaymentAmountInfo($orderIndex);
         return array_key_exists('approvedAmount', $paymentAmountInfo) ? $paymentAmountInfo['approvedAmount'] : null;
     }
@@ -384,7 +405,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
      * @param int $orderIndex
      * @return mixed|null
      */
-    public function getDepositedAmount($orderIndex = 0){
+    public function getDepositedAmount($orderIndex = 0)
+    {
         $paymentAmountInfo = $this->getPaymentAmountInfo($orderIndex);
         return array_key_exists('depositedAmount', $paymentAmountInfo) ? $paymentAmountInfo['depositedAmount'] : null;
     }
@@ -395,7 +417,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
      * @param int $orderIndex
      * @return mixed|null
      */
-    public function getRefundedAmount($orderIndex = 0){
+    public function getRefundedAmount($orderIndex = 0)
+    {
         $paymentAmountInfo = $this->getPaymentAmountInfo($orderIndex);
         return array_key_exists('refundedAmount', $paymentAmountInfo) ? $paymentAmountInfo['refundedAmount'] : null;
     }
@@ -418,7 +441,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
      * @param int $orderIndex
      * @return mixed|null
      */
-    public function getBankName($orderIndex = 0){
+    public function getBankName($orderIndex = 0)
+    {
         $paymentAmountInfo = $this->getPaymentAmountInfo($orderIndex);
         return array_key_exists('bankName', $paymentAmountInfo) ? $paymentAmountInfo['bankName'] : null;
     }
@@ -429,7 +453,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
      * @param int $orderIndex
      * @return mixed|null
      */
-    public function getBankCountryCode($orderIndex = 0){
+    public function getBankCountryCode($orderIndex = 0)
+    {
         $paymentAmountInfo = $this->getPaymentAmountInfo($orderIndex);
         return array_key_exists('bankCountryCode', $paymentAmountInfo) ? $paymentAmountInfo['bankCountryCode'] : null;
     }
@@ -440,7 +465,8 @@ class GetLastOrdersForMerchantsResponse extends AbstractResponse
      * @param int $orderIndex
      * @return mixed|null
      */
-    public function getBankCountryName($orderIndex = 0){
+    public function getBankCountryName($orderIndex = 0)
+    {
         $paymentAmountInfo = $this->getPaymentAmountInfo($orderIndex);
         return array_key_exists('bankCountryName', $paymentAmountInfo) ? $paymentAmountInfo['bankCountryName'] : null;
     }

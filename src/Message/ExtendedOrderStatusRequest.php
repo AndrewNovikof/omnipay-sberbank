@@ -14,7 +14,7 @@ class ExtendedOrderStatusRequest extends AbstractRequest
     {
         $this->validate('userName', 'password');
 
-        if (!$orderId = $this->getOrderId() && !$oderNumber = $this->getOrderNumber()) {
+        if (!$this->getOrderId() && !$this->getOrderNumber()) {
             throw new InvalidRequestException("You must specify one of the parameters - orderId or orderNumber");
         }
 
@@ -23,14 +23,7 @@ class ExtendedOrderStatusRequest extends AbstractRequest
             'password' => $this->getPassword(),
         ];
 
-        $additionalParams = [
-            'orderId',
-            'orderNumber',
-            'language'
-        ];
-
-        $this->specifyAdditionalParameters($data, $additionalParams);
-        return $data;
+        return $this->specifyAdditionalParameters($data, ['orderId', 'orderNumber', 'language']);
     }
 
     /**

@@ -7,19 +7,19 @@ use Omnipay\Common\Message\RequestInterface;
 
 class PurchaseResponse extends AbstractResponse implements RedirectResponseInterface
 {
-	/**
-	 * @return bool
-	 */
+    /**
+     * @return bool
+     */
     public function isRedirect()
     {
         return array_key_exists('formUrl', $this->data) ? true : false;
     }
 
-	/**
+    /**
      * Get the URL of the payment form to which the client's browser should be redirected.
      *
-	 * @return mixed|null
-	 */
+     * @return mixed|null
+     */
     public function getRedirectUrl()
     {
         return array_key_exists('formUrl', $this->data) ? $this->data['formUrl'] : null;
@@ -35,17 +35,17 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
         return array_key_exists('orderId', $this->data) ? $this->data['orderId'] : null;
     }
 
-	/**
-	 * @return string
-	 */
+    /**
+     * @return string
+     */
     public function getRedirectMethod()
     {
         return 'GET';
     }
 
-	/**
-	 * @return mixed
-	 */
+    /**
+     * @return mixed
+     */
     public function getRedirectData()
     {
         return $this->data;

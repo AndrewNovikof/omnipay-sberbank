@@ -17,7 +17,8 @@ class ExtendedOrderStatusResponse extends OrderStatusResponse
     /**
      * Order status
      *
-     * The value of this parameter determines the status of the order in the payment system. Missing if the order was not found.
+     * The value of this parameter determines the status of the order in the payment system.
+     * Missing if the order was not found.
      *
      * @return mixed|null
      */
@@ -179,7 +180,8 @@ class ExtendedOrderStatusResponse extends OrderStatusResponse
     /******************************************************************************************************************
      * Response parameters for versions 02, 03:
      * If the client specifies the version getOrderStatusExtended 02 and higher,
-     * then the following parameters will also be returned in the response, in addition to the parameters described above.
+     * then the following parameters will also be returned in the response,
+     * in addition to the parameters described above.
      ******************************************************************************************************************/
 
     /**
@@ -213,7 +215,8 @@ class ExtendedOrderStatusResponse extends OrderStatusResponse
     /******************************************************************************************************************
      * Response parameters for version 03:
      * If the client specifies the version getOrderStatusExtended 03,
-     * then the following parameters will also be returned in the response, in addition to the parameters described above.
+     * then the following parameters will also be returned in the response,
+     * in addition to the parameters described above.
      ******************************************************************************************************************/
 
     /**

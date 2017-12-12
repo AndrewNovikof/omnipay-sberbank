@@ -15,9 +15,14 @@ class GetLastOrdersForMerchantsRequest extends AbstractRequest
         $data = [
             'userName' => $this->getUserName(),
             'password' => $this->getPassword(),
+            'size' => $this->getSize(),
+            'from' => $this->getFrom(),
+            'to' => $this->getTo(),
+            'transactionStates' => $this->getTransactionStates(),
+            'merchants' => $this->getMerchants()
         ];
 
-        return $data;
+        return $this->specifyAdditionalParameters($data, ['language', 'page', 'searchByCreatedDate']);
     }
 
     /**

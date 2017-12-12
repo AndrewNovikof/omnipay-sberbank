@@ -6,13 +6,16 @@ use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\Exception\BadMethodCallException;
 use Omnipay\Common\Message\RequestInterface;
 use Omnipay\Sberbank\Message\AuthorizeRequest;
-use Omnipay\Sberbank\Message\CaptureAuthorizeRequest;
+use Omnipay\Sberbank\Message\BindCardRequest;
+use Omnipay\Sberbank\Message\CaptureRequest;
 use Omnipay\Sberbank\Message\CompleteAuthorizeRequest;
 use Omnipay\Sberbank\Message\ExtendedOrderStatusRequest;
+use Omnipay\Sberbank\Message\GetBindingsRequest;
 use Omnipay\Sberbank\Message\OrderStatusRequest;
 use Omnipay\Sberbank\Message\PaymentOrderBindingRequest;
 use Omnipay\Sberbank\Message\PurchaseRequest;
 use Omnipay\Sberbank\Message\RefundResponse;
+use Omnipay\Sberbank\Message\UnBindCardRequest;
 use Omnipay\Sberbank\Message\UpdateSSLCardListRequest;
 use Omnipay\Sberbank\Message\VerifyEnrollmentRequest;
 use Omnipay\Sberbank\Message\VoidRequest;
@@ -52,7 +55,9 @@ class Gateway extends AbstractGateway
      */
     public function setTestMode($testMode)
     {
-        $this->setEndPoint($testMode ? 'https://3dsec.sberbank.ru/payment/rest/' : 'https://securepayments.sberbank.ru/payment/rest/');
+        $this->setEndPoint(
+            $testMode ? 'https://3dsec.sberbank.ru/payment/rest/' : 'https://securepayments.sberbank.ru/payment/rest/'
+        );
 
         return $this->setParameter('testMode', $testMode);
     }
@@ -148,7 +153,7 @@ class Gateway extends AbstractGateway
      * @param array $options
      * @return RequestInterface
      */
-    function completeAuthorize(array $options = []): RequestInterface
+    public function completeAuthorize(array $options = []): RequestInterface
     {
         return $this->createRequest(OrderStatusRequest::class, $options);
     }
@@ -159,7 +164,7 @@ class Gateway extends AbstractGateway
      * @param array $options
      * @return RequestInterface
      */
-    function refund(array $options = []): RequestInterface
+    public function refund(array $options = []): RequestInterface
     {
         return $this->createRequest(RefundResponse::class, $options);
     }
@@ -170,7 +175,7 @@ class Gateway extends AbstractGateway
      * @param array $options
      * @return RequestInterface
      */
-    function completePurchase(array $options = [])
+    public function completePurchase(array $options = [])
     {
         return $this->createRequest(OrderStatusRequest::class, $options);
     }
@@ -181,7 +186,7 @@ class Gateway extends AbstractGateway
      * @param array $options
      * @return RequestInterface
      */
-    function void(array $options = []): RequestInterface
+    public function void(array $options = []): RequestInterface
     {
         return $this->createRequest(VoidRequest::class, $options);
     }
@@ -192,9 +197,9 @@ class Gateway extends AbstractGateway
      * @param array $options
      * @return RequestInterface
      */
-    function capture(array $options = []): RequestInterface
+    public function capture(array $options = []): RequestInterface
     {
-        return $this->createRequest(CaptureAuthorizeRequest::class, $options);
+        return $this->createRequest(CaptureRequest::class, $options);
     }
 
     /**
@@ -203,9 +208,19 @@ class Gateway extends AbstractGateway
      * @param array $options
      * @return RequestInterface
      */
-    public function status(array $options = []): RequestInterface
+    public function orderStatus(array $options = []): RequestInterface
     {
         return $this->createRequest(OrderStatusRequest::class, $options);
+    }
+
+    /**
+     * Supports orderStatus
+     *
+     * @return boolean True if this gateway supports the status() method
+     */
+    public function supportsOrderStatus()
+    {
+        return method_exists($this, 'orderStatus');
     }
 
     /**
@@ -214,9 +229,19 @@ class Gateway extends AbstractGateway
      * @param array $options
      * @return RequestInterface
      */
-    public function extendedStatus(array $options = []): RequestInterface
+    public function extendedOrderStatus(array $options = []): RequestInterface
     {
         return $this->createRequest(ExtendedOrderStatusRequest::class, $options);
+    }
+
+    /**
+     * Supports extendedOrderStatus
+     *
+     * @return boolean True if this gateway supports the extendedOrderStatus() method
+     */
+    public function supportsExtendedOrderStatus()
+    {
+        return method_exists($this, 'extendedOrderStatus');
     }
 
     /**
@@ -231,6 +256,16 @@ class Gateway extends AbstractGateway
     }
 
     /**
+     * Supports verifyEnrollment
+     *
+     * @return boolean True if this gateway supports the verifyEnrollment() method
+     */
+    public function supportsVerifyEnrollment()
+    {
+        return method_exists($this, 'verifyEnrollment');
+    }
+
+    /**
      * Requesting statistics on payments for the period
      *
      * @param array $options
@@ -239,6 +274,16 @@ class Gateway extends AbstractGateway
     public function getLastOrdersForMerchants(array $options = []): RequestInterface
     {
         return $this->createRequest(VerifyEnrollmentRequest::class, $options);
+    }
+
+    /**
+     * Supports getLastOrdersForMerchants
+     *
+     * @return boolean True if this gateway supports the getLastOrdersForMerchants() method
+     */
+    public function supportsGetLastOrdersForMerchants()
+    {
+        return method_exists($this, 'getLastOrdersForMerchants');
     }
 
     /**
@@ -253,6 +298,16 @@ class Gateway extends AbstractGateway
     }
 
     /**
+     * Supports updateSSLCardList
+     *
+     * @return boolean True if this gateway supports the updateSSLCardList() method
+     */
+    public function supportsUpdateSSLCardList()
+    {
+        return method_exists($this, 'updateSSLCardList');
+    }
+
+    /**
      * Request for payment on bundles
      *
      * @param array $options
@@ -263,19 +318,124 @@ class Gateway extends AbstractGateway
         return $this->createRequest(PaymentOrderBindingRequest::class, $options);
     }
 
-    function deleteCard(array $options = []): RequestInterface
+    /**
+     * Supports paymentOrderBinding
+     *
+     * @return boolean True if this gateway supports the paymentOrderBinding() method
+     */
+    public function supportsPaymentOrderBinding()
+    {
+        return method_exists($this, 'paymentOrderBinding');
+    }
+
+    /**
+     * Request for activation of a bundle
+     *
+     * @param array $options
+     * @return RequestInterface
+     */
+    public function bindCard(array $options = []): RequestInterface
+    {
+        return $this->createRequest(BindCardRequest::class, $options);
+    }
+
+    /**
+     * Supports bindCard
+     *
+     * @return boolean True if this gateway supports the bindCard() method
+     */
+    public function supportsBindCard()
+    {
+        return method_exists($this, 'bindCard');
+    }
+
+    /**
+     * Request for deactivation of a bundle
+     *
+     * @param array $options
+     * @return RequestInterface
+     */
+    public function unBindCard(array $options = []): RequestInterface
+    {
+        return $this->createRequest(UnBindCardRequest::class, $options);
+    }
+
+    /**
+     * Supports unBindCard
+     *
+     * @return boolean True if this gateway supports the unBindCard() method
+     */
+    public function supportsUnBindCard()
+    {
+        return method_exists($this, 'unBindCard');
+    }
+
+    /**
+     * Request a list of binders by client ID
+     *
+     * @param array $options
+     * @return RequestInterface
+     */
+    public function getBindings(array $options = []): RequestInterface
+    {
+        return $this->createRequest(GetBindingsRequest::class, $options);
+    }
+
+    /**
+     * Supports getBindings
+     *
+     * @return boolean True if this gateway supports the getBindings() method
+     */
+    public function supportsGetBindings()
+    {
+        return method_exists($this, 'getBindings');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function deleteCard(array $options = []): RequestInterface
     {
         throw new BadMethodCallException('Method deleteCard() not supported');
     }
 
-    function createCard(array $options = []): RequestInterface
+    /**
+     * {@inheritdoc}
+     */
+    public function supportsDeleteCard()
+    {
+        return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function createCard(array $options = []): RequestInterface
     {
         throw new BadMethodCallException('Method createCard() not supported');
     }
 
-    function updateCard(array $options = []): RequestInterface
+    /**
+     * {@inheritdoc}
+     */
+    public function supportsCreateCard()
+    {
+        return false;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function updateCard(array $options = []): RequestInterface
     {
         throw new BadMethodCallException('Method updateCard() not supported');
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function supportsUpdateCard()
+    {
+        return false;
+    }
 }

@@ -7,13 +7,14 @@ class OrderStatusResponse extends AbstractResponse
     /**
      * Order status
      *
-     * The value of this parameter determines the status of the order in the payment system. Missing if the order was not found.
+     * The value of this parameter determines the status of the order in the payment system.
+     * Missing if the order was not found.
      *
      * @return int
      */
     public function getOrderStatus()
     {
-        return array_key_exists('OrderStatus', $this->data) ? $this->data['OrderStatus'] :  null;
+        return array_key_exists('OrderStatus', $this->data) ? $this->data['OrderStatus'] : null;
     }
 
     /**
@@ -67,7 +68,9 @@ class OrderStatusResponse extends AbstractResponse
     }
 
     /**
-     * The currency code of the payment is ISO 4217. If not specified, it is considered equal to the default currency code.
+     * The currency code of the payment is ISO 4217.
+     *
+     * If not specified, it is considered equal to the default currency code.
      *
      * @return int
      */

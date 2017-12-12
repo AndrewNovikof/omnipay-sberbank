@@ -156,8 +156,8 @@ abstract class AbstractRequest extends BaseAbstractRequest
 
         $responseClassName = preg_replace('/Request/', 'Response', get_class($this));
         $reflection = new \ReflectionClass($responseClassName);
-        if(!$reflection->isInstantiable()){
-            throw new RuntimeException('Class '.preg_replace('/Request/', 'Response', get_class($this)).' not found');
+        if (!$reflection->isInstantiable()) {
+            throw new RuntimeException('Class '.preg_replace('/Request/', 'Response', get_class($this)) . ' not found');
         }
 
         return $reflection->newInstance($this, json_decode($httpResponse->getBody(true), true));

@@ -34,9 +34,7 @@ class PurchaseRequest extends AbstractRequest
             'bindingId'
         ];
 
-        $this->specifyAdditionalParameters($data, $additionalParams);
-
-        return $data;
+        return $this->specifyAdditionalParameters($data, $additionalParams);
     }
 
     /**

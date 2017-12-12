@@ -18,11 +18,7 @@ class VoidRequest extends AbstractRequest
             'orderId' => $this->getOrderId(),
         ];
 
-        if ($language = $this->getLanguage()) {
-            $data['language'] = $language;
-        }
-
-        return $data;
+        return $this->specifyAdditionalParameters($data, ['language']);
     }
 
     /**

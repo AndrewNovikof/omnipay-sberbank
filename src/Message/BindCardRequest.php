@@ -2,13 +2,13 @@
 
 namespace Omnipay\Sberbank\Message;
 
-class AuthorizeRequest extends PurchaseRequest
+class BindCardRequest extends UnBindCardRequest
 {
     /**
      * @return string
      */
     public function getMethod()
     {
-        return 'registerPreAuth.do';
+        return 'bindCard.do';
     }
 }

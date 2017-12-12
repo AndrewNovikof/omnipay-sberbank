@@ -11,7 +11,7 @@ class PaymentOrderBindingResponse extends AbstractResponse implements RedirectRe
      */
     public function isRedirect()
     {
-        return array_key_exists('acsUrl', $this->data) ? true : false;
+        return array_key_exists('redirect', $this->data) ? true : false;
     }
 
     /**
@@ -21,7 +21,7 @@ class PaymentOrderBindingResponse extends AbstractResponse implements RedirectRe
      */
     public function getRedirectUrl()
     {
-        return array_key_exists('acsUrl', $this->data) ? $this->data['acsUrl'] : null;
+        return array_key_exists('redirect', $this->data) ? $this->data['redirect'] : null;
     }
 
     /**

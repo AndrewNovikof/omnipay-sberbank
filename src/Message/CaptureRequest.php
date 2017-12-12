@@ -2,7 +2,7 @@
 
 namespace Omnipay\Sberbank\Message;
 
-class CaptureAuthorizeRequest extends AbstractRequest
+class CaptureRequest extends AbstractRequest
 {
     /**
      * @return array|mixed

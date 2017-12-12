@@ -22,9 +22,7 @@ class PaymentOrderBindingRequest extends AbstractRequest
 
         $additionalParams = ['language', 'cvc', 'email'];
 
-        $this->specifyAdditionalParameters($data, $additionalParams);
-
-        return $data;
+        return $this->specifyAdditionalParameters($data, $additionalParams);
     }
 
     /**
@@ -105,7 +103,8 @@ class PaymentOrderBindingRequest extends AbstractRequest
     /**
      * Set CVC code.
      *
-     * This parameter is required if the permission "Can carry out payment without CVC confirmation" is not selected for the merchant.
+     * This parameter is required if the permission "Can carry out payment without CVC confirmation"
+     * is not selected for the merchant.
      *
      * @param $cvc
      * @return \Omnipay\Common\Message\AbstractRequest

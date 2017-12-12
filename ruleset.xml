@@ -1,0 +1,7 @@
+<ruleset name="omnipay-paymentgate">
+    <description>Description of your coding standard</description>
+    <rule ref="Generic.PHP.DisallowShortOpenTag"/>
+    <rule ref="PSR2">
+        <exclude name="Generic.Files.LineLength"/>
+    </rule>
+</ruleset>
