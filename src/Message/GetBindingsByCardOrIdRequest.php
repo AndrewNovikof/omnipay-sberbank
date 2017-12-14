@@ -4,6 +4,10 @@ namespace Omnipay\Sberbank\Message;
 
 use Omnipay\Common\Exception\InvalidRequestException;
 
+/**
+ * Class GetBindingsByCardOrIdRequest
+ * @package Omnipay\Sberbank\Message
+ */
 class GetBindingsByCardOrIdRequest extends AbstractRequest
 {
     /**
@@ -12,19 +16,11 @@ class GetBindingsByCardOrIdRequest extends AbstractRequest
      */
     public function getData()
     {
-        $this->validate('userName', 'password');
-
         if (!$this->getOrderId() && !$this->getPan()) {
             throw new InvalidRequestException("You must specify one of the parameters - orderId or pan");
         }
 
-        $data = [
-            'userName' => $this->getUserName(),
-            'password' => $this->getPassword(),
-            'bindingId' => $this->getBindingId()
-        ];
-
-        return $this->specifyAdditionalParameters($data, ['bindingId', 'pan', 'showExpired']);
+        return $this->specifyAdditionalParameters([], ['bindingId', 'pan', 'showExpired']);
     }
 
     /**

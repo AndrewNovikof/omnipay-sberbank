@@ -2,6 +2,10 @@
 
 namespace Omnipay\Sberbank\Message;
 
+/**
+ * Class GetLastOrdersForMerchantsResponse
+ * @package Omnipay\Sberbank\Message
+ */
 class GetLastOrdersForMerchantsResponse extends AbstractResponse
 {
     /**

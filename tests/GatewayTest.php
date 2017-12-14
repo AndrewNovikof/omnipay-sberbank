@@ -1,12 +1,14 @@
 <?php
 
-namespace Omnipay\Sberbank;
+namespace Omnipay\Sberbank\Tests;
 
 use Omnipay\Common\Exception\BadMethodCallException;
+use Omnipay\Sberbank\Gateway;
 use Omnipay\Sberbank\Message\AuthorizeRequest;
 use Omnipay\Sberbank\Message\BindCardRequest;
 use Omnipay\Sberbank\Message\CaptureRequest;
 use Omnipay\Sberbank\Message\ExtendedOrderStatusRequest;
+use Omnipay\Sberbank\Message\GetBindingsRequest;
 use Omnipay\Sberbank\Message\GetLastOrdersForMerchantsRequest;
 use Omnipay\Sberbank\Message\OrderStatusRequest;
 use Omnipay\Sberbank\Message\PaymentOrderBindingRequest;
@@ -142,13 +144,6 @@ class GatewayTest extends GatewayTestCase
         $this->assertInstanceOf(UpdateSSLCardListRequest::class, $this->gateway->updateSSLCardList());
     }
 
-    public function testPaymentOrderBinding()
-    {
-        $this->assertTrue($this->gateway->supportsPaymentOrderBinding());
-        $this->assertTrue(method_exists($this->gateway, 'paymentOrderBinding'));
-        $this->assertInstanceOf(PaymentOrderBindingRequest::class, $this->gateway->paymentOrderBinding());
-    }
-
     public function testBindCard()
     {
         $this->assertTrue($this->gateway->supportsBindCard());
@@ -167,9 +162,12 @@ class GatewayTest extends GatewayTestCase
     {
         $this->assertTrue($this->gateway->supportsGetBindings());
         $this->assertTrue(method_exists($this->gateway, 'getBindings'));
-        $this->assertInstanceOf(UnBindCardRequest::class, $this->gateway->getBindings());
+        $this->assertInstanceOf(GetBindingsRequest::class, $this->gateway->getBindings());
     }
 
+    /**
+     * @expectedException BadMethodCallException
+     */
     public function testDeleteCard()
     {
         $this->assertFalse($this->gateway->supportsDeleteCard());
@@ -177,6 +175,9 @@ class GatewayTest extends GatewayTestCase
         $this->assertInstanceOf(BadMethodCallException::class, $this->gateway->deleteCard());
     }
 
+    /**
+     * @expectedException BadMethodCallException
+     */
     public function testCreateCard()
     {
         $this->assertFalse($this->gateway->supportsCreateCard());
@@ -184,10 +185,43 @@ class GatewayTest extends GatewayTestCase
         $this->assertInstanceOf(BadMethodCallException::class, $this->gateway->createCard());
     }
 
+    /**
+     * @expectedException BadMethodCallException
+     */
     public function testUpdateCard()
     {
         $this->assertFalse($this->gateway->supportsUpdateCard());
         $this->assertTrue(method_exists($this->gateway, 'updateCard'));
         $this->assertInstanceOf(BadMethodCallException::class, $this->gateway->updateCard());
+    }
+
+    public function testSupportsCreateCard()
+    {
+        $supportsCreate = $this->gateway->supportsCreateCard();
+        $this->assertInternalType('boolean', $supportsCreate);
+
+        if ($supportsCreate) {
+            $this->assertInstanceOf('Omnipay\Common\Message\RequestInterface', $this->gateway->createCard());
+        }
+    }
+
+    public function testSupportsDeleteCard()
+    {
+        $supportsDelete = $this->gateway->supportsDeleteCard();
+        $this->assertInternalType('boolean', $supportsDelete);
+
+        if ($supportsDelete) {
+            $this->assertInstanceOf('Omnipay\Common\Message\RequestInterface', $this->gateway->deleteCard());
+        }
+    }
+
+    public function testSupportsUpdateCard()
+    {
+        $supportsUpdate = $this->gateway->supportsUpdateCard();
+        $this->assertInternalType('boolean', $supportsUpdate);
+
+        if ($supportsUpdate) {
+            $this->assertInstanceOf('Omnipay\Common\Message\RequestInterface', $this->gateway->updateCard());
+        }
     }
 }

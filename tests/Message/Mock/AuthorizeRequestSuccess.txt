@@ -1,0 +1,11 @@
+HTTP/1.1 201 OK
+Server: nginx
+Date: Sun, 12 Dec 2017 22:29:41 GMT
+Content-Type: text/plain;charset=UTF-8
+Connection: keep-alive
+Cache-Control: no-cache, no-store
+
+{
+  "orderId": "d46ad519-cf5a-7d5a-d46a-d519000004ff",
+  "formUrl": "https://3dsec.sberbank.ru/payment/merchants/kinohod/payment_ru.html?mdOrder=d46ad519-cf5a-7d5a-d46a-d519000004ff"
+}

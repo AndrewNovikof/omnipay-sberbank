@@ -2,6 +2,10 @@
 
 namespace Omnipay\Sberbank\Message;
 
+/**
+ * Class UpdateSSLCardListRequest
+ * @package Omnipay\Sberbank\Message
+ */
 class UpdateSSLCardListRequest extends AbstractRequest
 {
     /**
@@ -10,11 +14,9 @@ class UpdateSSLCardListRequest extends AbstractRequest
      */
     public function getData()
     {
-        $this->validate('userName', 'password', 'mdorder');
+        $this->validate('mdorder');
 
         $data = [
-            'userName' => $this->getUserName(),
-            'password' => $this->getPassword(),
             'mdorder' => $this->getMdorder(),
         ];
 

@@ -4,6 +4,10 @@ namespace Omnipay\Sberbank\Message;
 
 use Omnipay\Common\Exception\InvalidRequestException;
 
+/**
+ * Class ExtendedOrderStatusRequest
+ * @package Omnipay\Sberbank\Message
+ */
 class ExtendedOrderStatusRequest extends AbstractRequest
 {
     /**
@@ -12,18 +16,11 @@ class ExtendedOrderStatusRequest extends AbstractRequest
      */
     public function getData()
     {
-        $this->validate('userName', 'password');
-
         if (!$this->getOrderId() && !$this->getOrderNumber()) {
             throw new InvalidRequestException("You must specify one of the parameters - orderId or orderNumber");
         }
 
-        $data = [
-            'userName' => $this->getUserName(),
-            'password' => $this->getPassword(),
-        ];
-
-        return $this->specifyAdditionalParameters($data, ['orderId', 'orderNumber', 'language']);
+        return $this->specifyAdditionalParameters([], ['orderId', 'orderNumber', 'language']);
     }
 
     /**

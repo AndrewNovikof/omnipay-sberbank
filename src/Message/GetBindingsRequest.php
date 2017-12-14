@@ -2,6 +2,10 @@
 
 namespace Omnipay\Sberbank\Message;
 
+/**
+ * Class GetBindingsRequest
+ * @package Omnipay\Sberbank\Message
+ */
 class GetBindingsRequest extends AbstractRequest
 {
     /**
@@ -10,11 +14,9 @@ class GetBindingsRequest extends AbstractRequest
      */
     public function getData()
     {
-        $this->validate('userName', 'password', 'clientId');
+        $this->validate('clientId');
 
         $data = [
-            'userName' => $this->getUserName(),
-            'password' => $this->getPassword(),
             'clientId' => $this->getClientId()
         ];
 

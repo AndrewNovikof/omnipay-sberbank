@@ -2,6 +2,10 @@
 
 namespace Omnipay\Sberbank\Message;
 
+/**
+ * Class VerifyEnrollmentRequest
+ * @package Omnipay\Sberbank\Message
+ */
 class VerifyEnrollmentRequest extends AbstractRequest
 {
     /**
@@ -10,11 +14,9 @@ class VerifyEnrollmentRequest extends AbstractRequest
      */
     public function getData()
     {
-        $this->validate('userName', 'password', 'pan');
+        $this->validate('pan');
 
         $data = [
-            'userName' => $this->getUserName(),
-            'password' => $this->getPassword(),
             'pan' => $this->getPan(),
         ];
 

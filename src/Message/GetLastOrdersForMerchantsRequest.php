@@ -2,6 +2,10 @@
 
 namespace Omnipay\Sberbank\Message;
 
+/**
+ * Class GetLastOrdersForMerchantsRequest
+ * @package Omnipay\Sberbank\Message
+ */
 class GetLastOrdersForMerchantsRequest extends AbstractRequest
 {
     /**
@@ -10,11 +14,9 @@ class GetLastOrdersForMerchantsRequest extends AbstractRequest
      */
     public function getData()
     {
-        $this->validate('userName', 'password', 'size', 'from', 'to', 'transactionStates', 'merchants');
+        $this->validate('size', 'from', 'to', 'transactionStates', 'merchants');
 
         $data = [
-            'userName' => $this->getUserName(),
-            'password' => $this->getPassword(),
             'size' => $this->getSize(),
             'from' => $this->getFrom(),
             'to' => $this->getTo(),

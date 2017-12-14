@@ -2,6 +2,10 @@
 
 namespace Omnipay\Sberbank\Message;
 
+/**
+ * Class OrderStatusResponse
+ * @package Omnipay\Sberbank\Message
+ */
 class OrderStatusResponse extends AbstractResponse
 {
     /**

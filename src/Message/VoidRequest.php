@@ -2,6 +2,10 @@
 
 namespace Omnipay\Sberbank\Message;
 
+/**
+ * Class VoidRequest
+ * @package Omnipay\Sberbank\Message
+ */
 class VoidRequest extends AbstractRequest
 {
     /**
@@ -10,11 +14,9 @@ class VoidRequest extends AbstractRequest
      */
     public function getData()
     {
-        $this->validate('userName', 'password', 'orderId');
+        $this->validate('orderId');
 
         $data = [
-            'userName' => $this->getUserName(),
-            'password' => $this->getPassword(),
             'orderId' => $this->getOrderId(),
         ];
 

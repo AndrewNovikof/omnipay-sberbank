@@ -2,6 +2,10 @@
 
 namespace Omnipay\Sberbank\Message;
 
+/**
+ * Class CaptureRequest
+ * @package Omnipay\Sberbank\Message
+ */
 class CaptureRequest extends AbstractRequest
 {
     /**
@@ -10,11 +14,9 @@ class CaptureRequest extends AbstractRequest
      */
     public function getData()
     {
-        $this->validate('userName', 'password', 'orderId', 'amount');
+        $this->validate('orderId', 'amount');
 
         $data = [
-            'userName' => $this->getUserName(),
-            'password' => $this->getPassword(),
             'orderId' => $this->getOrderId(),
             'amount' => $this->getAmount(),
         ];

@@ -5,6 +5,10 @@ namespace Omnipay\Sberbank\Message;
 use Omnipay\Common\Exception\RuntimeException;
 use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
 
+/**
+ * Class AbstractRequest
+ * @package Omnipay\Sberbank\Message
+ */
 abstract class AbstractRequest extends BaseAbstractRequest
 {
     /**
@@ -142,22 +146,29 @@ abstract class AbstractRequest extends BaseAbstractRequest
     /**
      * @param mixed $data
      * @return object|\Omnipay\Common\Message\ResponseInterface
+     * @throws \Omnipay\Common\Exception\InvalidRequestException
      */
     public function sendData($data)
     {
         $url = $this->getEndPoint() . $this->getMethod();
+        $this->validate('userName', 'password');
         $httpRequest = $this->httpClient->createRequest(
             $this->getHttpMethod(),
             $url,
             $this->getHeaders(),
-            $data
+            array_merge([
+                'userName' => $this->getUserName(),
+                'password' => $this->getPassword()
+            ], $data)
         );
         $httpResponse = $httpRequest->send();
 
         $responseClassName = preg_replace('/Request/', 'Response', get_class($this));
         $reflection = new \ReflectionClass($responseClassName);
         if (!$reflection->isInstantiable()) {
-            throw new RuntimeException('Class '.preg_replace('/Request/', 'Response', get_class($this)) . ' not found');
+            throw new RuntimeException(
+                'Class ' . preg_replace('/Request/', 'Response', get_class($this)) . ' not found'
+            );
         }
 
         return $reflection->newInstance($this, json_decode($httpResponse->getBody(true), true));

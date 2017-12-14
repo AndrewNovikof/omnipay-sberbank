@@ -5,6 +5,10 @@ namespace Omnipay\Sberbank\Message;
 use Omnipay\Common\Message\AbstractResponse as BaseAbstractResponse;
 use Omnipay\Common\Message\RequestInterface;
 
+/**
+ * Class AbstractResponse
+ * @package Omnipay\Sberbank\Message
+ */
 abstract class AbstractResponse extends BaseAbstractResponse
 {
     /**

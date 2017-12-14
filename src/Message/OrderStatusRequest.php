@@ -2,6 +2,10 @@
 
 namespace Omnipay\Sberbank\Message;
 
+/**
+ * Class OrderStatusRequest
+ * @package Omnipay\Sberbank\Message
+ */
 class OrderStatusRequest extends AbstractRequest
 {
     /**
@@ -10,11 +14,9 @@ class OrderStatusRequest extends AbstractRequest
      */
     public function getData()
     {
-        $this->validate('userName', 'password', 'orderId');
+        $this->validate('orderId');
 
         $data = [
-            'userName' => $this->getUserName(),
-            'password' => $this->getPassword(),
             'orderId' => $this->getOrderId()
         ];
 

@@ -2,6 +2,10 @@
 
 namespace Omnipay\Sberbank\Message;
 
+/**
+ * Class GetBindingsByCardOrIdResponse
+ * @package Omnipay\Sberbank\Message
+ */
 class GetBindingsByCardOrIdResponse extends GetBindingsResponse
 {
     /**

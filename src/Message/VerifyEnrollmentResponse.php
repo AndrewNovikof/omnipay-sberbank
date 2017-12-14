@@ -2,6 +2,10 @@
 
 namespace Omnipay\Sberbank\Message;
 
+/**
+ * Class VerifyEnrollmentResponse
+ * @package Omnipay\Sberbank\Message
+ */
 class VerifyEnrollmentResponse extends AbstractResponse
 {
     /**

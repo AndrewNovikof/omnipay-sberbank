@@ -8,13 +8,12 @@ use Omnipay\Common\Message\RequestInterface;
 use Omnipay\Sberbank\Message\AuthorizeRequest;
 use Omnipay\Sberbank\Message\BindCardRequest;
 use Omnipay\Sberbank\Message\CaptureRequest;
-use Omnipay\Sberbank\Message\CompleteAuthorizeRequest;
 use Omnipay\Sberbank\Message\ExtendedOrderStatusRequest;
 use Omnipay\Sberbank\Message\GetBindingsRequest;
+use Omnipay\Sberbank\Message\GetLastOrdersForMerchantsRequest;
 use Omnipay\Sberbank\Message\OrderStatusRequest;
-use Omnipay\Sberbank\Message\PaymentOrderBindingRequest;
 use Omnipay\Sberbank\Message\PurchaseRequest;
-use Omnipay\Sberbank\Message\RefundResponse;
+use Omnipay\Sberbank\Message\RefundRequest;
 use Omnipay\Sberbank\Message\UnBindCardRequest;
 use Omnipay\Sberbank\Message\UpdateSSLCardListRequest;
 use Omnipay\Sberbank\Message\VerifyEnrollmentRequest;
@@ -166,7 +165,7 @@ class Gateway extends AbstractGateway
      */
     public function refund(array $options = []): RequestInterface
     {
-        return $this->createRequest(RefundResponse::class, $options);
+        return $this->createRequest(RefundRequest::class, $options);
     }
 
     /**
@@ -273,7 +272,7 @@ class Gateway extends AbstractGateway
      */
     public function getLastOrdersForMerchants(array $options = []): RequestInterface
     {
-        return $this->createRequest(VerifyEnrollmentRequest::class, $options);
+        return $this->createRequest(GetLastOrdersForMerchantsRequest::class, $options);
     }
 
     /**
@@ -305,27 +304,6 @@ class Gateway extends AbstractGateway
     public function supportsUpdateSSLCardList()
     {
         return method_exists($this, 'updateSSLCardList');
-    }
-
-    /**
-     * Request for payment on bundles
-     *
-     * @param array $options
-     * @return RequestInterface
-     */
-    public function paymentOrderBinding(array $options = []): RequestInterface
-    {
-        return $this->createRequest(PaymentOrderBindingRequest::class, $options);
-    }
-
-    /**
-     * Supports paymentOrderBinding
-     *
-     * @return boolean True if this gateway supports the paymentOrderBinding() method
-     */
-    public function supportsPaymentOrderBinding()
-    {
-        return method_exists($this, 'paymentOrderBinding');
     }
 
     /**

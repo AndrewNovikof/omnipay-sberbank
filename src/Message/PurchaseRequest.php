@@ -2,6 +2,10 @@
 
 namespace Omnipay\Sberbank\Message;
 
+/**
+ * Class PurchaseRequest
+ * @package Omnipay\Sberbank\Message
+ */
 class PurchaseRequest extends AbstractRequest
 {
     /**
@@ -10,29 +14,15 @@ class PurchaseRequest extends AbstractRequest
      */
     public function getData()
     {
-        $this->validate('userName', 'password', 'orderNumber', 'amount', 'returnUrl');
+        $this->validate('mdOrder', 'bindingId', 'ip');
 
         $data = [
-            'userName' => $this->getUserName(),
-            'password' => $this->getPassword(),
-            'orderNumber' => $this->getOrderNumber(),
-            'amount' => $this->getAmount(),
-            'returnUrl' => $this->getReturnUrl()
+            'mdOrder' => $this->getMdorder(),
+            'bindingId' => $this->getBindingId(),
+            'ip' => $this->getIp()
         ];
 
-        $additionalParams = [
-            'currency',
-            'failUrl',
-            'description',
-            'language',
-            'pageView',
-            'clientId',
-            'merchantLogin',
-            'jsonParams',
-            'sessionTimeoutSecs',
-            'expirationDate',
-            'bindingId'
-        ];
+        $additionalParams = ['language', 'cvc', 'email'];
 
         return $this->specifyAdditionalParameters($data, $additionalParams);
     }
@@ -42,146 +32,48 @@ class PurchaseRequest extends AbstractRequest
      */
     public function getMethod()
     {
-        return 'register.do';
+        return 'paymentOrderBinding.do';
     }
 
     /**
-     * @return mixed
-     */
-    public function getOrderNumber()
-    {
-        return $this->getParameter('orderNumber');
-    }
-
-    /**
-     * @param $value
+     * Set order number
+     *
+     * @param $mdorder
      * @return \Omnipay\Common\Message\AbstractRequest
      */
-    public function setOrderNumber($value)
+    public function setMdorder($mdorder)
     {
-        return $this->setParameter('orderNumber', $value);
+        return $this->setParameter('mdorder', $mdorder);
     }
 
     /**
+     * Get order number in the payment system.
+     *
+     * Unique within the system.
+     *
      * @return mixed
      */
-    public function getFailUrl()
+    public function getMdorder()
     {
-        return $this->getParameter('failUrl');
+        return $this->getParameter('mdorder');
     }
 
     /**
-     * @param $value
+     * Set identifier of the bundle created when the order was paid or used for payment.
+     *
+     * Is present only if the magazine is allowed to create bundles.
+     *
+     * @param $bindingId
      * @return \Omnipay\Common\Message\AbstractRequest
      */
-    public function setFailUrl($value)
+    public function setBindingId($bindingId)
     {
-        return $this->setParameter('failUrl', $value);
+        return $this->setParameter('bindingId', $bindingId);
     }
 
     /**
-     * @return mixed
-     */
-    public function getPageView()
-    {
-        return $this->getParameter('pageView');
-    }
-
-    /**
-     * @param $value
-     * @return \Omnipay\Common\Message\AbstractRequest
-     */
-    public function setPageView($value)
-    {
-        return $this->setParameter('pageView', $value);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getClientId()
-    {
-        return $this->getParameter('clientId');
-    }
-
-    /**
-     * @param $value
-     * @return \Omnipay\Common\Message\AbstractRequest
-     */
-    public function setClientId($value)
-    {
-        return $this->setParameter('clientId', $value);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getMerchantLogin()
-    {
-        return $this->getParameter('merchantLogin');
-    }
-
-    /**
-     * @param $value
-     * @return \Omnipay\Common\Message\AbstractRequest
-     */
-    public function setMerchantLogin($value)
-    {
-        return $this->setParameter('merchantLogin', $value);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getJsonParams()
-    {
-        return $this->getParameter('jsonParams');
-    }
-
-    /**
-     * @param $value
-     * @return \Omnipay\Common\Message\AbstractRequest
-     */
-    public function setJsonParams($value)
-    {
-        return $this->setParameter('jsonParams', $value);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSessionTimeoutSecs()
-    {
-        return $this->getParameter('sessionTimeoutSecs');
-    }
-
-    /**
-     * @param $value
-     * @return \Omnipay\Common\Message\AbstractRequest
-     */
-    public function setSessionTimeoutSecs($value)
-    {
-        return $this->setParameter('sessionTimeoutSecs', $value);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getExpirationDate()
-    {
-        return $this->getParameter('expirationDate');
-    }
-
-    /**
-     * @param $value
-     * @return \Omnipay\Common\Message\AbstractRequest
-     */
-    public function setExpirationDate($value)
-    {
-        return $this->setParameter('expirationDate', $value);
-    }
-
-    /**
+     * Get identifier of the bundle
+     *
      * @return mixed
      */
     public function getBindingId()
@@ -190,11 +82,68 @@ class PurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @param $value
+     * Set client IP-address
+     *
+     * @param $ip
      * @return \Omnipay\Common\Message\AbstractRequest
      */
-    public function setBindingId($value)
+    public function setIp($ip)
     {
-        return $this->setParameter('bindingId', $value);
+        return $this->setParameter('ip', $ip);
+    }
+
+    /**
+     * Get client IP-address
+     *
+     * @return mixed
+     */
+    public function getIp()
+    {
+        return $this->getParameter('ip');
+    }
+
+    /**
+     * Set CVC code.
+     *
+     * This parameter is required if the permission "Can carry out payment without CVC confirmation"
+     * is not selected for the merchant.
+     *
+     * @param $cvc
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
+    public function setCvc($cvc)
+    {
+        return $this->setParameter('cvc', $cvc);
+    }
+
+    /**
+     * Get CVC code.
+     *
+     * @return mixed
+     */
+    public function getCvc()
+    {
+        return $this->getParameter('cvc');
+    }
+
+    /**
+     * Set E-mail address of the payer.
+     *
+     * @param $email
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
+    public function setEmail($email)
+    {
+        return $this->setParameter('email', $email);
+    }
+
+    /**
+     * Set E-mail address of the payer.
+     *
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->getParameter('email');
     }
 }
