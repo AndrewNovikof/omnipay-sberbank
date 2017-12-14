@@ -2,19 +2,12 @@
 
 namespace Omnipay\Sberbank\Tests\Message;
 
-use Omnipay\PaymentgateRu\Gateway;
-use Omnipay\PaymentgateRu\OrderBundle\OrderBundle;
 use Omnipay\Sberbank\Message\AuthorizeRequest;
 use Omnipay\Sberbank\Message\AuthorizeResponse;
-use Omnipay\Sberbank\Message\PurchaseRequest;
-use Omnipay\Sberbank\Message\PurchaseResponse;
-use Tests\Examples\Order;
 
 /**
  * Class AuthorizeRequestTest
- *
- * @package Omnipay\PaymentgateRu\Message
- * @property AuthorizeRequest $request
+ * @package Omnipay\Sberbank\Tests\Message
  */
 class AuthorizeRequestTest extends AbstractRequestTest
 {
@@ -33,8 +26,7 @@ class AuthorizeRequestTest extends AbstractRequestTest
     protected $returnUrl;
 
     /**
-     * Sets up the fixture, for example, open a network connection.
-     * This method is called before a test is executed.
+     * {@inheritdoc}
      */
     public function setUp()
     {
@@ -45,9 +37,7 @@ class AuthorizeRequestTest extends AbstractRequestTest
     }
 
     /**
-     * Array of request parameters to successfully build request object
-     *
-     * @return array
+     * {@inheritdoc}
      */
     protected function getRequestParameters()
     {
@@ -58,6 +48,9 @@ class AuthorizeRequestTest extends AbstractRequestTest
         );
     }
 
+    /**
+     * Test getters and setters
+     */
     public function testGettersAndSetters()
     {
         $this->assertSame($this->request->setCurrency(643), $this->request);
@@ -94,6 +87,9 @@ class AuthorizeRequestTest extends AbstractRequestTest
         $this->assertEquals($this->request->getBindingId(), 654321);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function testData()
     {
         $this->assertEquals($this->getRequestParameters(), $this->request->getData());
@@ -122,6 +118,9 @@ class AuthorizeRequestTest extends AbstractRequestTest
         $this->assertEquals($data['currency'], 643);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function testSendSuccess()
     {
         $this->setMockHttpResponse('AuthorizeRequestSuccess.txt');
@@ -144,7 +143,10 @@ class AuthorizeRequestTest extends AbstractRequestTest
         );
     }
 
-    public function testSendFailure()
+    /**
+     * {@inheritdoc}
+     */
+    public function testSendFail()
     {
         $this->setMockHttpResponse('AuthorizeRequestFail.txt');
 
@@ -161,9 +163,7 @@ class AuthorizeRequestTest extends AbstractRequestTest
     }
 
     /**
-     * Get request class
-     *
-     * @return string
+     * {@inheritdoc}
      */
     protected function getRequestClass()
     {

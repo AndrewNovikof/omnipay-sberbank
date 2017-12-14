@@ -6,6 +6,10 @@ use Omnipay\Common\Exception\RuntimeException;
 use Omnipay\Sberbank\Message\AbstractRequest;
 use Omnipay\Tests\TestCase;
 
+/**
+ * Class AbstractRequestTest
+ * @package Omnipay\Sberbank\Tests\Message
+ */
 abstract class AbstractRequestTest extends TestCase
 {
     /**
@@ -35,20 +39,6 @@ abstract class AbstractRequestTest extends TestCase
     protected $orderNumber;
 
     /**
-     * Array of request parameters to successfully build request object
-     *
-     * @return array
-     */
-    abstract protected function getRequestParameters();
-
-    /**
-     * Get request class
-     *
-     * @return string
-     */
-    abstract protected function getRequestClass();
-
-    /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
@@ -62,28 +52,38 @@ abstract class AbstractRequestTest extends TestCase
         $this->request->initialize($this->getRequestParameters());
     }
 
-//    public function testSendDataReturnsCorrectResponseClassInstance()
-//    {
-//        $this->setMockHttpResponse('AuthorizeRequestSuccess.txt');
-//        $responseClass = $this->getResponseClassName();
-//
-//        if (!class_exists($responseClass)) {
-//            throw new RuntimeException("Cannot find \"{$responseClass}\" class");
-//        }
-//
-//        $this->assertInstanceOf($responseClass, $this->request->send());
-//    }
-//
-//    public function testRequestShouldReturnErrorOnServerException()
-//    {
-//        $this->setMockHttpResponse('Request502.txt');
-//
-//        $this->assertRegExp('/Server error response/', $this->request->send()->getMessage());
-//    }
-
+    /**
+     * Test set Data
+     *
+     * @return mixed
+     */
     abstract public function testData();
 
+    /**
+     * Test send success response
+     *
+     * @return mixed
+     */
     abstract public function testSendSuccess();
 
-    abstract public function testSendFailure();
+    /**
+     * Test send fail response
+     *
+     * @return mixed
+     */
+    abstract public function testSendFail();
+
+    /**
+     * Array of request parameters to successfully build request object
+     *
+     * @return array
+     */
+    abstract protected function getRequestParameters();
+
+    /**
+     * Get request class
+     *
+     * @return string
+     */
+    abstract protected function getRequestClass();
 }

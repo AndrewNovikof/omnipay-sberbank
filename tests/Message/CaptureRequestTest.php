@@ -6,10 +6,10 @@ use Omnipay\Sberbank\Message\BindCardRequest;
 use Omnipay\Sberbank\Message\BindCardResponse;
 
 /**
- * Class CardBindRequestTest
+ * Class CaptureRequestTest
  * @package Omnipay\Sberbank\Tests\Message
  */
-class CardBindRequestTest extends AbstractRequestTest
+class CaptureRequestTest extends AbstractRequestTest
 {
     /**
      * Binding id

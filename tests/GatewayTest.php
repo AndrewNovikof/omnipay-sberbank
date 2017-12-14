@@ -11,7 +11,6 @@ use Omnipay\Sberbank\Message\ExtendedOrderStatusRequest;
 use Omnipay\Sberbank\Message\GetBindingsRequest;
 use Omnipay\Sberbank\Message\GetLastOrdersForMerchantsRequest;
 use Omnipay\Sberbank\Message\OrderStatusRequest;
-use Omnipay\Sberbank\Message\PaymentOrderBindingRequest;
 use Omnipay\Sberbank\Message\PurchaseRequest;
 use Omnipay\Sberbank\Message\RefundRequest;
 use Omnipay\Sberbank\Message\UnBindCardRequest;
@@ -20,6 +19,10 @@ use Omnipay\Sberbank\Message\VerifyEnrollmentRequest;
 use Omnipay\Sberbank\Message\VoidRequest;
 use Omnipay\Tests\GatewayTestCase;
 
+/**
+ * Class GatewayTest
+ * @package Omnipay\Sberbank\Tests
+ */
 class GatewayTest extends GatewayTestCase
 {
     /**

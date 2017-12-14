@@ -40,6 +40,6 @@ abstract class AbstractResponse extends BaseAbstractResponse
      */
     public function isSuccessful()
     {
-        return $this->getCode() === 0;
+        return $this->getCode() == 0;
     }
 }
