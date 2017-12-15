@@ -6,7 +6,7 @@ Connection: keep-alive
 Cache-Control: no-cache, no-store
 
 {
-  "errorCode": "0",
-  "errorMessage": "Обработка запроса прошла без системных ошибок"
+  "errorCode": "3",
+  "errorMessage": "Авторизация отменена"
 }
 

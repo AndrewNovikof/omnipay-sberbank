@@ -16,7 +16,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
      *
      * @return string
      */
-    abstract protected function getMethod();
+    abstract public function getMethod();
 
     /**
      * Get endpoint URL

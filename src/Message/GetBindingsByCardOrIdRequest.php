@@ -16,7 +16,7 @@ class GetBindingsByCardOrIdRequest extends AbstractRequest
      */
     public function getData()
     {
-        if (!$this->getOrderId() && !$this->getPan()) {
+        if (!$this->getBindingId() && !$this->getPan()) {
             throw new InvalidRequestException("You must specify one of the parameters - orderId or pan");
         }
 

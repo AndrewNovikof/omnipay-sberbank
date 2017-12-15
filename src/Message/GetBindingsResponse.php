@@ -13,7 +13,7 @@ class GetBindingsResponse extends AbstractResponse
      */
     public function getBinding()
     {
-        return array_key_exists('binding', $this->data) ? $this->data['binding'] : [];
+        return array_key_exists('bindings', $this->data) ? $this->data['bindings'] : [];
     }
 
     /**
@@ -21,12 +21,13 @@ class GetBindingsResponse extends AbstractResponse
      *
      * Is present only if the magazine is allowed to create bundles.
      *
+     * @param $binding_index
      * @return mixed|null
      */
-    public function getBindingId()
+    public function getBindingId($binding_index)
     {
         $binding = $this->getBinding();
-        return array_key_exists('bindingId', $binding) ? $binding['bindingId'] : null;
+        return array_key_exists('bindingId', $binding[$binding_index]) ? $binding[$binding_index]['bindingId'] : null;
     }
 
     /**
@@ -34,12 +35,13 @@ class GetBindingsResponse extends AbstractResponse
      *
      * Specified only after payment of the order.
      *
+     * @param $binding_index
      * @return mixed|null
      */
-    public function getMaskedPan()
+    public function getMaskedPan($binding_index)
     {
         $binding = $this->getBinding();
-        return array_key_exists('maskedPan', $binding) ? $binding['maskedPan'] : null;
+        return array_key_exists('maskedPan', $binding[$binding_index]) ? $binding[$binding_index]['maskedPan'] : null;
     }
 
     /**
@@ -47,11 +49,12 @@ class GetBindingsResponse extends AbstractResponse
      *
      * Specified only after payment of the order.
      *
+     * @param $binding_index
      * @return mixed|null
      */
-    public function getExpiryDate()
+    public function getExpiryDate($binding_index)
     {
         $binding = $this->getBinding();
-        return array_key_exists('expiryDate', $binding) ? $binding['expiryDate'] : null;
+        return array_key_exists('expiryDate', $binding[$binding_index]) ? $binding[$binding_index]['expiryDate'] : null;
     }
 }

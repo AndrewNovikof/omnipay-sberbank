@@ -1,0 +1,20 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Sun, 12 Dec 2017 22:29:41 GMT
+Content-Type: text/plain;charset=UTF-8
+Connection: keep-alive
+Cache-Control: no-cache, no-store
+
+{
+  "errorCode": "0",
+  "errorMessage": "Обработка запроса прошла без системных ошибок",
+  "bindings": [
+      {
+        "bindingId": 156456146,
+        "maskedPan": "5555555****5599",
+        "expiryDate": 201901,
+        "clientId": 113321
+      }
+  ]
+}
+

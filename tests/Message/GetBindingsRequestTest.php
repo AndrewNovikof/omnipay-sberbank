@@ -2,21 +2,21 @@
 
 namespace Omnipay\Sberbank\Tests\Message;
 
-use Omnipay\Sberbank\Message\BindCardResponse;
-use Omnipay\Sberbank\Message\CaptureRequest;
+use Omnipay\Sberbank\Message\GetBindingsRequest;
+use Omnipay\Sberbank\Message\GetBindingsResponse;
 
 /**
- * Class CaptureRequestTest
+ * Class GetBindingsRequestTest
  * @package Omnipay\Sberbank\Tests\Message
  */
-class CaptureRequestTest extends AbstractRequestTest
+class GetBindingsRequestTest extends AbstractRequestTest
 {
     /**
-     * Amount
+     * Client id
      *
      * @var string
      */
-    protected $amount;
+    protected $clientId;
 
     /**
      * Sets up the fixture, for example, open a network connection.
@@ -24,7 +24,7 @@ class CaptureRequestTest extends AbstractRequestTest
      */
     public function setUp()
     {
-        $this->amount = random_int(1000, 100000);
+        $this->clientId = uniqid('clientId-', true);
         
         parent::setUp();
     }
@@ -36,7 +36,7 @@ class CaptureRequestTest extends AbstractRequestTest
      */
     protected function getRequestClass()
     {
-        return new CaptureRequest($this->getHttpClient(), $this->getHttpRequest());
+        return new GetBindingsRequest($this->getHttpClient(), $this->getHttpRequest());
     }
 
     /**
@@ -46,7 +46,7 @@ class CaptureRequestTest extends AbstractRequestTest
      */
     public function testGetMethod()
     {
-        $this->assertEquals('deposit.do', $this->request->getMethod());
+        $this->assertEquals('getBindings.do', $this->request->getMethod());
     }
 
     /**
@@ -57,8 +57,7 @@ class CaptureRequestTest extends AbstractRequestTest
     protected function getRequestParameters()
     {
         return [
-            'orderId' => $this->orderId,
-            'amount' => $this->amount
+            'clientId' => $this->clientId
         ];
     }
 
@@ -79,16 +78,20 @@ class CaptureRequestTest extends AbstractRequestTest
      */
     public function testSendSuccess()
     {
-        $this->setMockHttpResponse('CaptureRequestSuccess.txt');
+        $this->setMockHttpResponse('GetBindingsRequestSuccess.txt');
 
         $this->request->setUserName($this->userName);
         $this->request->setPassword($this->password);
-        /** @var BindCardResponse $response */
+
+        /** @var GetBindingsResponse $response */
         $response = $this->request->send();
         
         $this->assertTrue($response->isSuccessful());
         $this->assertEquals($response->getCode(), 0);
         $this->assertEquals($response->getMessage(), 'Обработка запроса прошла без системных ошибок');
+        $this->assertEquals($response->getBindingId(0), 156456146);
+        $this->assertEquals($response->getMaskedPan(0), "5555555****5599");
+        $this->assertEquals($response->getExpiryDate(0), 201901);
     }
 
     /**
@@ -98,15 +101,16 @@ class CaptureRequestTest extends AbstractRequestTest
      */
     public function testSendError()
     {
-        $this->setMockHttpResponse('CaptureRequestError.txt');
+        $this->setMockHttpResponse('GetBindingsRequestError.txt');
 
         $this->request->setUserName($this->userName);
         $this->request->setPassword($this->password);
-        /** @var BindCardResponse $response */
+
+        /** @var GetBindingsResponse $response */
         $response = $this->request->send();
         
         $this->assertFalse($response->isSuccessful());
-        $this->assertEquals($response->getCode(), 6);
-        $this->assertEquals($response->getMessage(), 'Незарегистрированный OrderId');
+        $this->assertEquals($response->getCode(), 2);
+        $this->assertEquals($response->getMessage(), 'Информация не найдена.');
     }
 }

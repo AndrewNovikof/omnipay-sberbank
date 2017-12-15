@@ -1,0 +1,59 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Sun, 12 Dec 2017 22:29:41 GMT
+Content-Type: text/plain;charset=UTF-8
+Connection: keep-alive
+Cache-Control: no-cache, no-store
+
+{
+  "orderStatus": 2,
+  "errorCode": 0,
+  "errorMessage": "Обработка запроса прошла без системных ошибок",
+  "orderNumber": "99999",
+  "Amount": 150000,
+  "currency": "643",
+  "Ip": "111.111.111.111",
+  "merchantOrderParams": [
+    {
+        "name": "param1",
+        "value": "value1"
+    },
+    {
+        "name": "param2",
+        "value": "value2"
+    },
+    {
+        "name": "param3",
+        "value": "value3"
+    }
+  ],
+  "cardAuthInfo": {
+    "expiration": "202012",
+    "cardholderName": "Ivan Ivanov",
+    "approvalCode": "123456",
+    "pan": "555555**5599",
+    "secureAuthInfo": {
+        "eci": 13546564,
+        "cavv": 356546,
+        "xid": 4646465456
+      }
+  },
+  "BindingInfo": {
+    "clientId": 777777,
+    "bindingId": 555555
+  },
+  "authDateTime": "2017-12-12T12:12:12",
+  "authRefNum": 5456465436,
+  "terminalId": 13254,
+  "paymentAmountInfo": {
+      "approvedAmount": 150000,
+      "depositedAmount": 150000,
+      "refundedAmount": 0,
+      "paymentState": 1
+  },
+  "bankInfo": {
+      "bankName": "Sberbank",
+      "bankCountryCode": 643,
+      "bankCountryName": "Russia"
+  }
+}

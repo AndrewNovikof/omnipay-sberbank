@@ -59,7 +59,7 @@ class AuthorizeRequest extends AbstractRequest
      * @param $value
      * @return \Omnipay\Common\Message\AbstractRequest
      */
-    public function setTwoStage($value)
+    public function setTwoStage(bool $value)
     {
         return $this->setParameter('twoStage', $value);
     }

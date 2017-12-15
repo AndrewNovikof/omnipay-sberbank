@@ -6,20 +6,21 @@ use Omnipay\Sberbank\Message\BindCardRequest;
 use Omnipay\Sberbank\Message\BindCardResponse;
 
 /**
- * Class CardBindRequestTest
+ * Class BindCardRequestTest
  * @package Omnipay\Sberbank\Tests\Message
  */
-class CardBindRequestTest extends AbstractRequestTest
+class BindCardRequestTest extends AbstractRequestTest
 {
     /**
      * Binding id
-     * 
+     *
      * @var string
      */
     protected $bindingId;
 
     /**
-     * {@inheritdoc}
+     * Sets up the fixture, for example, open a network connection.
+     * This method is called before a test is executed.
      */
     public function setUp()
     {
@@ -29,16 +30,41 @@ class CardBindRequestTest extends AbstractRequestTest
     }
 
     /**
-     * {@inheritdoc}
+     * Get request class
+     *
+     * @return string
+     */
+    protected function getRequestClass()
+    {
+        return new BindCardRequest($this->getHttpClient(), $this->getHttpRequest());
+    }
+
+    /**
+     * Test request method
+     *
+     * @return string
+     */
+    public function testGetMethod()
+    {
+        $this->assertEquals('bindCard.do', $this->request->getMethod());
+    }
+
+    /**
+     * Array of request parameters to successfully build request object
+     *
+     * @return array
      */
     protected function getRequestParameters()
     {
-        return array(
+        return [
             'bindingId' => $this->bindingId
-        );
+        ];
     }
+
     /**
-     * {@inheritdoc}
+     * Test set Data
+     *
+     * @return mixed
      */
     public function testData()
     {
@@ -46,7 +72,9 @@ class CardBindRequestTest extends AbstractRequestTest
     }
 
     /**
-     * {@inheritdoc}
+     * Test send success response
+     *
+     * @return mixed
      */
     public function testSendSuccess()
     {
@@ -59,15 +87,17 @@ class CardBindRequestTest extends AbstractRequestTest
         
         $this->assertTrue($response->isSuccessful());
         $this->assertEquals($response->getCode(), 0);
-        $this->assertEquals($response->getMessage(), 'Успешно');
+        $this->assertEquals($response->getMessage(), 'Обработка запроса прошла без системных ошибок');
     }
 
     /**
-     * {@inheritdoc}
+     * Test send fail response
+     *
+     * @return mixed
      */
-    public function testSendFail()
+    public function testSendError()
     {
-        $this->setMockHttpResponse('BindCardRequestFail.txt');
+        $this->setMockHttpResponse('BindCardRequestError.txt');
 
         $this->request->setUserName($this->userName);
         $this->request->setPassword($this->password);
@@ -77,13 +107,5 @@ class CardBindRequestTest extends AbstractRequestTest
         $this->assertFalse($response->isSuccessful());
         $this->assertEquals($response->getCode(), 5);
         $this->assertEquals($response->getMessage(), 'Доступ запрещён');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getRequestClass()
-    {
-        return new BindCardRequest($this->getHttpClient(), $this->getHttpRequest());
     }
 }

@@ -11,11 +11,12 @@ class GetBindingsByCardOrIdResponse extends GetBindingsResponse
     /**
      * Number (identifier) of the client in the merchant system.
      *
+     * @param $binding_index
      * @return mixed|null
      */
-    public function getClientId()
+    public function getClientId($binding_index)
     {
         $binding = $this->getBinding();
-        return array_key_exists('clientId', $binding) ? $binding['clientId'] : null;
+        return array_key_exists('clientId', $binding[$binding_index]) ? $binding[$binding_index]['clientId'] : null;
     }
 }

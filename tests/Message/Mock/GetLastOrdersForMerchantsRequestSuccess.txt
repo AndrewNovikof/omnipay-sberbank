@@ -1,0 +1,111 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Sun, 12 Dec 2017 22:29:41 GMT
+Content-Type: text/plain;charset=UTF-8
+Connection: keep-alive
+Cache-Control: no-cache, no-store
+
+{
+  "errorCode": 0,
+  "orderStatuses": [
+    {
+      "errorCode": "0",
+      "orderNumber": "58drs0Pes459Hdsddd0567a0",
+      "orderStatus": 2,
+      "actionCode": 0,
+      "actionCodeDescription": "Запрос успешно обработан",
+      "amount": 250000,
+      "currency": "810",
+      "date": 1414485649233,
+      "orderDescription": "Opisanie",
+      "ip": "212.5.125.194",
+      "merchantOrderParams": [
+        {
+          "name": "registr1",
+          "value": "registr1"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "mdOrder",
+          "value": "f1a3365b-542c-4c8d-b34c-e9a7ee8dbc9c"
+        }
+      ],
+      "cardAuthInfo": {
+        "expiration": "201512",
+        "cardholderName": "Ivan",
+        "approvalCode": "123456",
+        "pan": "411111**1111"
+      },
+      "bindingInfo": {
+        "clientId": "666",
+        "bindingId": "1eabfb8e-b90e-4dc8-bef6-14bd392b1cec"
+      },
+      "authDateTime": 1414485661207,
+      "terminalId": "111113",
+      "authRefNum": "111111111111",
+      "paymentAmountInfo": {
+        "paymentState": "DEPOSITED",
+        "approvedAmount": 250000,
+        "depositedAmount": 250000,
+        "refundedAmount": 0
+      },
+      "bankInfo": {
+        "bankName": "TEST CARD",
+        "bankCountryCode": "RU",
+        "bankCountryName": "Россия"
+      }
+    },
+    {
+      "errorCode": "0",
+      "orderNumber": "57drs0Pes459Hdsddd0567a0",
+      "orderStatus": 2,
+      "actionCode": 0,
+      "actionCodeDescription": "Запрос успешно обработан",
+      "amount": 250000,
+      "currency": "810",
+      "date": 1414485277286,
+      "orderDescription": "Opisanie",
+      "ip": "212.5.125.194",
+      "merchantOrderParams": [
+        {
+          "name": "registr1",
+          "value": "registr1"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "mdOrder",
+          "value": "09489184-bc5e-44a7-b6c4-3ca1feb8ef69"
+        }
+      ],
+      "cardAuthInfo": {
+        "expiration": "201512",
+        "cardholderName": "Ivan",
+        "approvalCode": "123456",
+        "pan": "411111**1111"
+      },
+      "bindingInfo": {
+        "clientId": "666",
+        "bindingId": "1eabfb8e-b90e-4dc8-bef6-14bd392b1cec"
+      },
+      "authDateTime": 1414485296046,
+      "terminalId": "111113",
+      "authRefNum": "111111111111",
+      "paymentAmountInfo": {
+        "paymentState": "DEPOSITED",
+        "approvedAmount": 250000,
+        "depositedAmount": 250000,
+        "refundedAmount": 0
+      },
+      "bankInfo": {
+        "bankName": "TEST CARD",
+        "bankCountryCode": "RU",
+        "bankCountryName": "Россия"
+      }
+    }
+  ],
+  "totalCount": 2,
+  "page": 0,
+  "pageSize": 100
+}

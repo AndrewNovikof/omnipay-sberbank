@@ -36,7 +36,7 @@ abstract class AbstractRequestTest extends TestCase
      *
      * @var string
      */
-    protected $orderNumber;
+    protected $orderId;
 
     /**
      * Sets up the fixture, for example, open a network connection.
@@ -47,7 +47,7 @@ abstract class AbstractRequestTest extends TestCase
         $this->request = $this->getRequestClass();
         $this->userName = uniqid('login', true);
         $this->password = uniqid('password', true);
-        $this->orderNumber = uniqid('test_order', true);
+        $this->orderId = uniqid('orderId_', true);
 
         $this->request->initialize($this->getRequestParameters());
     }
@@ -71,7 +71,7 @@ abstract class AbstractRequestTest extends TestCase
      *
      * @return mixed
      */
-    abstract public function testSendFail();
+    abstract public function testSendError();
 
     /**
      * Array of request parameters to successfully build request object
@@ -86,4 +86,11 @@ abstract class AbstractRequestTest extends TestCase
      * @return string
      */
     abstract protected function getRequestClass();
+
+    /**
+     * Test request method
+     *
+     * @return string
+     */
+    abstract protected function testGetMethod();
 }

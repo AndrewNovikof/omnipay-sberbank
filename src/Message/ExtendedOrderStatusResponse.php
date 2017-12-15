@@ -9,6 +9,26 @@ namespace Omnipay\Sberbank\Message;
 class ExtendedOrderStatusResponse extends OrderStatusResponse
 {
     /**
+     * Response Message
+     *
+     * @return null|string A response message from the payment gateway
+     */
+    public function getMessage()
+    {
+        return array_key_exists('errorMessage', $this->data) ? $this->data['errorMessage'] : null;
+    }
+
+    /**
+     * Response code
+     *
+     * @return null|string A response code from the payment gateway
+     */
+    public function getCode()
+    {
+        return array_key_exists('errorCode', $this->data) ? $this->data['errorCode'] : null;
+    }
+
+    /**
      * Number (identifier) of the order in the store system
      *
      * @return mixed|null

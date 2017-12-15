@@ -1,0 +1,24 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Sun, 12 Dec 2017 22:29:41 GMT
+Content-Type: text/plain;charset=UTF-8
+Connection: keep-alive
+Cache-Control: no-cache, no-store
+
+{
+  "OrderStatus": 2,
+  "ErrorCode": 0,
+  "ErrorMessage": "Обработка запроса прошла без системных ошибок",
+  "OrderNumber": "99999",
+  "Pan": "555555**5599",
+  "expiration": "202012",
+  "cardholderName": "Ivan Ivanov",
+  "Amount": 150000,
+  "currency": "643",
+  "approvalCode": "123456",
+  "Ip": "111.111.111.111",
+  "BindingInfo": {
+    "clientId": 777777,
+    "bindingId": 555555
+  }
+}

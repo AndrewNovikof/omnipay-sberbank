@@ -2,21 +2,28 @@
 
 namespace Omnipay\Sberbank\Tests\Message;
 
-use Omnipay\Sberbank\Message\BindCardResponse;
-use Omnipay\Sberbank\Message\CaptureRequest;
+use Omnipay\Sberbank\Message\GetBindingsByCardOrIdRequest;
+use Omnipay\Sberbank\Message\GetBindingsByCardOrIdResponse;
 
 /**
- * Class CaptureRequestTest
+ * Class GetBindingsByCardOrIdRequestTest
  * @package Omnipay\Sberbank\Tests\Message
  */
-class CaptureRequestTest extends AbstractRequestTest
+class GetBindingsByCardOrIdRequestTest extends AbstractRequestTest
 {
     /**
-     * Amount
+     * Binding id
      *
      * @var string
      */
-    protected $amount;
+    protected $bindingId;
+
+    /**
+     * Pan code of card
+     *
+     * @var string
+     */
+    protected $pan;
 
     /**
      * Sets up the fixture, for example, open a network connection.
@@ -24,7 +31,8 @@ class CaptureRequestTest extends AbstractRequestTest
      */
     public function setUp()
     {
-        $this->amount = random_int(1000, 100000);
+        $this->bindingId = uniqid('bindingId-', true);
+        $this->pan = uniqid('pan-', true);
         
         parent::setUp();
     }
@@ -36,7 +44,7 @@ class CaptureRequestTest extends AbstractRequestTest
      */
     protected function getRequestClass()
     {
-        return new CaptureRequest($this->getHttpClient(), $this->getHttpRequest());
+        return new GetBindingsByCardOrIdRequest($this->getHttpClient(), $this->getHttpRequest());
     }
 
     /**
@@ -46,7 +54,7 @@ class CaptureRequestTest extends AbstractRequestTest
      */
     public function testGetMethod()
     {
-        $this->assertEquals('deposit.do', $this->request->getMethod());
+        $this->assertEquals('getBindingsByCardOrId.do', $this->request->getMethod());
     }
 
     /**
@@ -57,8 +65,7 @@ class CaptureRequestTest extends AbstractRequestTest
     protected function getRequestParameters()
     {
         return [
-            'orderId' => $this->orderId,
-            'amount' => $this->amount
+            'bindingId' => $this->bindingId
         ];
     }
 
@@ -73,22 +80,39 @@ class CaptureRequestTest extends AbstractRequestTest
     }
 
     /**
+     * Test getters and setters
+     */
+    public function testAdditionalGettersAndSetters()
+    {
+        $this->assertSame($this->request->setPan('5555555****5599'), $this->request);
+        $this->assertEquals($this->request->getPan(), '5555555****5599');
+
+        $this->assertSame($this->request->setShowExpired(true), $this->request);
+        $this->assertEquals($this->request->getShowExpired(), true);
+    }
+
+    /**
      * Test send success response
      *
      * @return mixed
      */
     public function testSendSuccess()
     {
-        $this->setMockHttpResponse('CaptureRequestSuccess.txt');
+        $this->setMockHttpResponse('GetBindingsCardByOrderOrIdRequestSuccess.txt');
 
         $this->request->setUserName($this->userName);
         $this->request->setPassword($this->password);
-        /** @var BindCardResponse $response */
+
+        /** @var GetBindingsByCardOrIdResponse $response */
         $response = $this->request->send();
         
         $this->assertTrue($response->isSuccessful());
         $this->assertEquals($response->getCode(), 0);
         $this->assertEquals($response->getMessage(), 'Обработка запроса прошла без системных ошибок');
+        $this->assertEquals($response->getBindingId(0), 156456146);
+        $this->assertEquals($response->getMaskedPan(0), "5555555****5599");
+        $this->assertEquals($response->getExpiryDate(0), 201901);
+        $this->assertEquals($response->getClientId(0), 113321);
     }
 
     /**
@@ -98,15 +122,16 @@ class CaptureRequestTest extends AbstractRequestTest
      */
     public function testSendError()
     {
-        $this->setMockHttpResponse('CaptureRequestError.txt');
+        $this->setMockHttpResponse('GetBindingsCardByOrderOrIDRequestError.txt');
 
         $this->request->setUserName($this->userName);
         $this->request->setPassword($this->password);
-        /** @var BindCardResponse $response */
+
+        /** @var GetBindingsByCardOrIdResponse $response */
         $response = $this->request->send();
         
         $this->assertFalse($response->isSuccessful());
-        $this->assertEquals($response->getCode(), 6);
-        $this->assertEquals($response->getMessage(), 'Незарегистрированный OrderId');
+        $this->assertEquals($response->getCode(), 2);
+        $this->assertEquals($response->getMessage(), 'Информация не найдена.');
     }
 }
