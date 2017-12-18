@@ -1,0 +1,14 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Sun, 12 Dec 2017 22:29:41 GMT
+Content-Type: text/plain;charset=UTF-8
+Connection: keep-alive
+Cache-Control: no-cache, no-store
+
+{
+    "info":"Ваш платёж обработан, происходит переадресация...",
+    "acsUrl":"https://test.paymentgate.ru/acs/auth/start.do",
+    "paReq":"eJxVUdtugkAQ/RXCOy7LRdQMa2ixKU28pGrfyTICqSzKpcW/765AbR8mOWcyO",
+    "termUrl":"https://test.paymentgate.ru:443/testpayment/rest/finish3ds.do",
+    "errorCode":0
+}

@@ -1,0 +1,12 @@
+HTTP/1.1 200 OK
+Server: nginx
+Date: Sun, 12 Dec 2017 22:29:41 GMT
+Content-Type: text/plain;charset=UTF-8
+Connection: keep-alive
+Cache-Control: no-cache, no-store
+
+{
+    "redirect":"http://ya.ru?orderId=eb49300c-95b7-4dcd-9739-eee6c61f2ac4",
+    "info":"Ваш платёж обработан, происходит переадресация...",
+    "errorCode":0
+}

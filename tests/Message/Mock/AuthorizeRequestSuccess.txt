@@ -7,5 +7,5 @@ Cache-Control: no-cache, no-store
 
 {
   "orderId": "61351fbd-ac25-484f-b930-4d0ce4101ab7",
-  "formUrl": "https://server/application_context/mobile_payment_ru.html?mdOrder=61351fbd-ac25-484f-b930-4d0ce4101ab7"
+  "formUrl": "https://3dsec.sberbank.ru/payment/merchants/kinohod/payment_ru.html?mdOrder=61351fbd-ac25-484f-b930-4d0ce4101ab7"
 }

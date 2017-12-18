@@ -173,10 +173,10 @@ class AuthorizeRequestTest extends AbstractRequestTest
         $this->assertEmpty($response->getRedirectData());
         $this->assertNull($response->getCode());
         $this->assertNull($response->getMessage());
-        $this->assertEquals($response->getOrderId(), 'd46ad519-cf5a-7d5a-d46a-d519000004ff');
+        $this->assertEquals($response->getOrderId(), '61351fbd-ac25-484f-b930-4d0ce4101ab7');
         $this->assertEquals(
             $response->getRedirectUrl(),
-            'https://3dsec.sberbank.ru/payment/merchants/kinohod/payment_ru.html?mdOrder=d46ad519-cf5a-7d5a-d46a-d519000004ff'
+            'https://3dsec.sberbank.ru/payment/merchants/kinohod/payment_ru.html?mdOrder=61351fbd-ac25-484f-b930-4d0ce4101ab7'
         );
     }
 

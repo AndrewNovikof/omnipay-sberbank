@@ -41,9 +41,9 @@ class PurchaseRequest extends AbstractRequest
      * @param $mdorder
      * @return \Omnipay\Common\Message\AbstractRequest
      */
-    public function setMdorder($mdorder)
+    public function setMdOrder($mdorder)
     {
-        return $this->setParameter('mdorder', $mdorder);
+        return $this->setParameter('mdOrder', $mdorder);
     }
 
     /**
@@ -53,9 +53,9 @@ class PurchaseRequest extends AbstractRequest
      *
      * @return mixed
      */
-    public function getMdorder()
+    public function getMdOrder()
     {
-        return $this->getParameter('mdorder');
+        return $this->getParameter('mdOrder');
     }
 
     /**

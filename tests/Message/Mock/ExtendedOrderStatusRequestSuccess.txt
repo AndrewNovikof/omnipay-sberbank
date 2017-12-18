@@ -55,5 +55,5 @@ Cache-Control: no-cache, no-store
       "bankName": "Sberbank",
       "bankCountryCode": 643,
       "bankCountryName": "Russia"
-  }
+    }
 }

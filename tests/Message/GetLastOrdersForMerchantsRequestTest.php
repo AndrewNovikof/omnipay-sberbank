@@ -2,10 +2,6 @@
 
 namespace Omnipay\Sberbank\Tests\Message;
 
-use Omnipay\Sberbank\Message\GetBindingsByCardOrIdRequest;
-use Omnipay\Sberbank\Message\GetBindingsByCardOrIdResponse;
-use Omnipay\Sberbank\Message\GetBindingsRequest;
-use Omnipay\Sberbank\Message\GetBindingsResponse;
 use Omnipay\Sberbank\Message\GetLastOrdersForMerchantsRequest;
 use Omnipay\Sberbank\Message\GetLastOrdersForMerchantsResponse;
 
@@ -119,7 +115,7 @@ class GetLastOrdersForMerchantsRequestTest extends AbstractRequestTest
      */
     public function testSendSuccess()
     {
-        $this->setMockHttpResponse('GetBindingsRequestSuccess.txt');
+        $this->setMockHttpResponse('GetLastOrdersForMerchantsRequestSuccess.txt');
 
         $this->request->setUserName($this->userName);
         $this->request->setPassword($this->password);
@@ -129,10 +125,42 @@ class GetLastOrdersForMerchantsRequestTest extends AbstractRequestTest
 
         $this->assertTrue($response->isSuccessful());
         $this->assertEquals($response->getCode(), 0);
-        $this->assertEquals($response->getMessage(), 'Обработка запроса прошла без системных ошибок');
-        $this->assertEquals($response->getBindingId(0), 156456146);
-        $this->assertEquals($response->getMaskedPan(0), "5555555****5599");
-        $this->assertEquals($response->getExpiryDate(0), 201901);
+        $this->assertEquals($response->getMessage(), null);
+
+        $this->assertEquals($response->getTotalCount(), 2);
+        $this->assertEquals($response->getPage(), 0);
+        $this->assertEquals($response->getPageSize(), 100);
+
+        $this->assertEquals($response->getOrderErrorCode(0), 0);
+        $this->assertEquals($response->getOrderNumber(0), "58drs0Pes459Hdsddd0567a0");
+        $this->assertEquals($response->getOrderStatus(0), 2);
+        $this->assertEquals($response->getActionCode(0), 0);
+        $this->assertEquals($response->getActionCodeDescription(0), "Запрос успешно обработан");
+        $this->assertEquals($response->getAmount(0), 250000);
+        $this->assertEquals($response->getCurrency(0), 810);
+        $this->assertEquals($response->getDate(0), 1414485649233);
+        $this->assertEquals($response->getOrderDescription(0), "Opisanie");
+        $this->assertEquals($response->getIp(0), "212.5.125.194");
+        $this->assertEquals($response->getMerchantOrderParamName(0, 0), "registr1");
+        $this->assertEquals($response->getMerchantOrderParamValue(0, 0), "registr1");
+        $this->assertEquals($response->getAttributesName(0, 0), "mdOrder");
+        $this->assertEquals($response->getAttributesValue(0, 0), "f1a3365b-542c-4c8d-b34c-e9a7ee8dbc9c");
+        $this->assertEquals($response->getExpiration(0), "201512");
+        $this->assertEquals($response->getCardholderName(0), "Ivan");
+        $this->assertEquals($response->getApprovalCode(0), "123456");
+        $this->assertEquals($response->getPan(0), "411111**1111");
+        $this->assertEquals($response->getClientId(0), "666");
+        $this->assertEquals($response->getBindingId(0), "1eabfb8e-b90e-4dc8-bef6-14bd392b1cec");
+        $this->assertEquals($response->getAuthDateTime(0), 1414485661207);
+        $this->assertEquals($response->getTerminalId(0), "111113");
+        $this->assertEquals($response->getAuthRefNum(0), "111111111111");
+        $this->assertEquals($response->getPaymentState(0), "DEPOSITED");
+        $this->assertEquals($response->getApprovedAmount(0), 250000);
+        $this->assertEquals($response->getDepositedAmount(0), 250000);
+        $this->assertEquals($response->getRefundedAmount(0), 0);
+        $this->assertEquals($response->getBankName(0), "TEST CARD");
+        $this->assertEquals($response->getBankCountryName(0), "Россия");
+        $this->assertEquals($response->getBankCountryCode(0), "RU");
     }
 
     /**
@@ -142,7 +170,7 @@ class GetLastOrdersForMerchantsRequestTest extends AbstractRequestTest
      */
     public function testSendError()
     {
-        $this->setMockHttpResponse('GetBindingsRequestError.txt');
+        $this->setMockHttpResponse('GetBindingsCardByOrderOrIDRequestError.txt');
 
         $this->request->setUserName($this->userName);
         $this->request->setPassword($this->password);
