@@ -20,6 +20,21 @@ This package supports PHP 7.0 and higher
 composer require andrewnovikof/omnipay-sberbank
 ```
 
+## Solving problems with minimal stability
+
+Add to your composer.json
+
+```json
+{
+  "minimum-stability":"dev",
+  "prefer-stable": true
+}
+
+```
+
+
+Because this library 
+
 # Simple Example
 
 ```php
