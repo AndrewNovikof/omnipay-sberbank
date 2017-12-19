@@ -13,7 +13,7 @@ This package supports PHP 7.0 and higher
 
 # Download
 
-## IComposer 
+## Composer 
 
 ```
 // This assumes that you have composer installed globally
