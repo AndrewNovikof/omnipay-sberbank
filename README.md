@@ -32,9 +32,6 @@ Add to your composer.json
 
 ```
 
-
-Because this library 
-
 # Simple Example
 
 ```php
