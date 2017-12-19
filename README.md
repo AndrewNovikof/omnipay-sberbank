@@ -77,16 +77,16 @@ if ($response->isRedirect()) {
 ```
 
 # Payment Methods
-## [Order registration without pre-authorization]("#register.do")
-## [Order registration with pre-authorization]("#registerPreAuth.do")
-## [Order completion after pre-authorization]("#deposit.do")
-## [Orders status]("#getOrderStatus.do")
-## [Extended order status]("#getOrderStatusExtended.do)
-## [Void order]("#reverse.do")
-## [Refund for an order payment]("#refund.do")
-## [Verify the involvement of the map in 3DS]("#verifyEnrollment)
-## [Statistics on payments for the period]("#getLastOrdersForMerchants.do")
-## [Add a card to the list of SSL-cards]("#updateSSLCardList.do")
+#### [Order registration without pre-authorization]("#register.do")
+#### [Order registration with pre-authorization]("#registerPreAuth.do")
+#### [Order completion after pre-authorization]("#deposit.do")
+#### [Orders status]("#getOrderStatus.do")
+#### [Extended order status]("#getOrderStatusExtended.do)
+#### [Void order]("#reverse.do")
+#### [Refund for an order payment]("#refund.do")
+#### [Verify the involvement of the map in 3DS]("#verifyEnrollment)
+#### [Statistics on payments for the period]("#getLastOrdersForMerchants.do")
+#### [Add a card to the list of SSL-cards]("#updateSSLCardList.do")
 
 <a name="register.do"></a>
 
