@@ -26,7 +26,9 @@ use Omnipay\Sberbank\Message\VoidRequest;
 class Gateway extends AbstractGateway
 {
     /**
-     * {@inheritdoc}
+     * Get gateway display name
+     *
+     * This can be used by carts to get the display name for each gateway.
      */
     public function getName()
     {
@@ -34,7 +36,13 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * {@inheritdoc}
+     * Define gateway parameters, in the following format:
+     *
+     * array(
+     *     'username' => '', // string variable
+     *     'testMode' => false, // boolean variable
+     *     'landingPage' => array('billing', 'login'), // enum variable, first item is default
+     * );
      */
     public function getDefaultParameters()
     {
@@ -122,6 +130,65 @@ class Gateway extends AbstractGateway
     public function setPassword($password)
     {
         return $this->setParameter('password', $password);
+    }
+
+    /**
+     * Get language of responses
+     *
+     * @return mixed
+     */
+    public function getLanguage()
+    {
+        return $this->getParameter('language');
+    }
+
+    /**
+     * Set language of responses
+     *
+     * @param $value
+     * @return $this
+     */
+    public function setLanguage($value)
+    {
+        return $this->setParameter('language', $value);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrderId()
+    {
+        return $this->getParameter('orderId');
+    }
+
+    /**
+     * @param $value
+     * @return $this
+     */
+    public function setOrderId($value)
+    {
+        return $this->setParameter('orderId', $value);
+    }
+
+    /**
+     * Get the request return URL.
+     *
+     * @return string
+     */
+    public function getReturnUrl()
+    {
+        return $this->getParameter('returnUrl');
+    }
+
+    /**
+     * Sets the request return URL.
+     *
+     * @param string $value
+     * @return $this
+     */
+    public function setReturnUrl($value)
+    {
+        return $this->setParameter('returnUrl', $value);
     }
 
     /**
