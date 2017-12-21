@@ -122,7 +122,9 @@ abstract class AbstractRequest extends BaseAbstractRequest
      */
     public function getHeaders()
     {
-        return [];
+        return [
+            "content-type" => 'application/json'
+        ];
     }
 
     /**
