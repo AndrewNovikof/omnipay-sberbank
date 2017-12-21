@@ -123,7 +123,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
     public function getHeaders()
     {
         return [
-            "content-type" => 'application/json'
+            "content-type" => 'application/x-www-form-urlencoded'
         ];
     }
 
