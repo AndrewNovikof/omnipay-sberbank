@@ -60,7 +60,6 @@ class OrderStatusResponse extends AbstractResponse
     {
         return array_key_exists('Pan', $this->data) ? $this->data['Pan'] : null;
     }
-
     /**
      * The expiration date of the card in the format YYYYMM. Specified only after payment of the order.
      *
@@ -89,6 +88,16 @@ class OrderStatusResponse extends AbstractResponse
     public function getAmount()
     {
         return array_key_exists('Amount', $this->data) ? $this->data['Amount'] : null;
+    }
+
+    /**
+     * Get deposited amount
+     *
+     * @return string
+     */
+    public function getDepositAmount()
+    {
+        return array_key_exists('depositAmount', $this->data) ? $this->data['depositAmount'] : null;
     }
 
     /**
