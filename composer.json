@@ -20,7 +20,7 @@
     "omnipay/common": "v3.0-alpha.1"
   },
   "require-dev": {
-    "omnipay/tests": "v3.0-alpha.1",
+    "omnipay/tests": "^3",
     "phpunit/phpunit": "^5.7.0",
     "squizlabs/php_codesniffer": "3.*"
   },
