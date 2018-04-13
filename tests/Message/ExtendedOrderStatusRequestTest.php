@@ -108,6 +108,7 @@ class ExtendedOrderStatusRequestTest extends AbstractRequestTest
         $this->assertEquals($response->getOrderNumber(), 99999);
         $this->assertEquals($response->getAmount(), 150000);
         $this->assertEquals($response->getIp(), "111.111.111.111");
+        $this->assertEquals($response->getDepositAmount(), 150000);
 
         $this->assertEquals($response->getMerchantOrderParams(), [
             [

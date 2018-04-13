@@ -115,6 +115,7 @@ class OrderStatusRequestTest extends AbstractRequestTest
         $this->assertEquals($response->getIp(), "111.111.111.111");
         $this->assertEquals($response->getClientId(), 777777);
         $this->assertEquals($response->getBindingId(), 555555);
+        $this->assertEquals($response->getDepositAmount(), 150000);
     }
 
     /**

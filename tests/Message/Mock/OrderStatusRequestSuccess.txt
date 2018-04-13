@@ -13,6 +13,7 @@ Cache-Control: no-cache, no-store
   "Pan": "555555**5599",
   "expiration": "202012",
   "cardholderName": "Ivan Ivanov",
+  "depositAmount": 150000,
   "Amount": 150000,
   "currency": "643",
   "approvalCode": "123456",

@@ -12,6 +12,7 @@ Cache-Control: no-cache, no-store
   "orderNumber": "99999",
   "Amount": 150000,
   "currency": "643",
+  "depositAmount": 150000,
   "Ip": "111.111.111.111",
   "merchantOrderParams": [
     {
