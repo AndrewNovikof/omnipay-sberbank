@@ -86,8 +86,8 @@ class AuthorizeRequestTest extends AbstractRequestTest
      */
     public function testAdditionalGettersAndSetters()
     {
-        $this->assertSame($this->request->setCurrency(643), $this->request);
-        $this->assertEquals($this->request->getCurrency(), 643);
+        $this->assertSame($this->request->setCurrency('RUB'), $this->request);
+        $this->assertEquals($this->request->getCurrency(), 'RUB');
 
         $this->assertSame($this->request->setFailUrl('http://test.test/error'), $this->request);
         $this->assertEquals($this->request->getFailUrl(), 'http://test.test/error');
@@ -138,7 +138,7 @@ class AuthorizeRequestTest extends AbstractRequestTest
             ->setFailUrl('https://test.com/fail')
             ->setClientId(654321)
             ->setMerchantLogin('testLogin')
-            ->setCurrency(643);
+            ->setCurrency('RUB');
 
         $data = $this->request->getData();
 
@@ -150,7 +150,7 @@ class AuthorizeRequestTest extends AbstractRequestTest
         $this->assertEquals($data['failUrl'], 'https://test.com/fail');
         $this->assertEquals($data['clientId'], 654321);
         $this->assertEquals($data['merchantLogin'], 'testLogin');
-        $this->assertEquals($data['currency'], 643);
+        $this->assertEquals($data['currency'], 'RUB');
     }
 
     /**

@@ -9,7 +9,7 @@
 
 This library implements the work with [Sberbank acquiring api](https://rsb2-eyufrolovichevasberbankru-dev.developer.eu.apiconnect.ibmcloud.com/acquiring-api-rest-about) via [theleague Omnipay](https://omnipay.thephpleague.com/) processing library for PHP. It has a clear and consistent API, is fully unit tested.
 
-This package supports PHP 7.0 and higher 
+This package supports PHP 7.1 and higher 
 
 # Download
 

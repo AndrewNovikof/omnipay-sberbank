@@ -148,6 +148,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
     /**
      * @param mixed $data
      * @return object|\Omnipay\Common\Message\ResponseInterface
+     * @throws \ReflectionException
      * @throws \Omnipay\Common\Exception\InvalidRequestException
      */
     public function sendData($data)
@@ -164,11 +165,11 @@ abstract class AbstractRequest extends BaseAbstractRequest
             ], $data)
         );
 
-        $responseClassName = preg_replace('/Request/', 'Response', get_class($this));
+        $responseClassName = str_replace('Request', 'Response', get_class($this));
         $reflection = new \ReflectionClass($responseClassName);
         if (!$reflection->isInstantiable()) {
             throw new RuntimeException(
-                'Class ' . preg_replace('/Request/', 'Response', get_class($this)) . ' not found'
+                'Class ' . str_replace('Request', 'Response', get_class($this)) . ' not found'
             );
         }
 
@@ -182,7 +183,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
      * @param array $additionalParams
      * @return array
      */
-    public function specifyAdditionalParameters(array $data, array $additionalParams)
+    public function specifyAdditionalParameters(array $data, array $additionalParams): array
     {
         foreach ($additionalParams as $param) {
             $method = 'get' . ucfirst($param);

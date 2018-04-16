@@ -44,7 +44,7 @@ class AuthorizeRequest extends AbstractRequest
      */
     public function getMethod()
     {
-        return $this->GetTwoStage() ? 'registerPreAuth.do' : 'register.do';
+        return $this->getTwoStage() ? 'registerPreAuth.do' : 'register.do';
     }
 
     /**
@@ -58,6 +58,7 @@ class AuthorizeRequest extends AbstractRequest
     /**
      * @param $value
      * @return \Omnipay\Common\Message\AbstractRequest
+     * @throws \Omnipay\Common\Exception\RuntimeException
      */
     public function setTwoStage(bool $value)
     {
@@ -75,6 +76,7 @@ class AuthorizeRequest extends AbstractRequest
     /**
      * @param $value
      * @return \Omnipay\Common\Message\AbstractRequest
+     * @throws \Omnipay\Common\Exception\RuntimeException
      */
     public function setOrderNumber($value)
     {
@@ -92,6 +94,7 @@ class AuthorizeRequest extends AbstractRequest
     /**
      * @param $value
      * @return \Omnipay\Common\Message\AbstractRequest
+     * @throws \Omnipay\Common\Exception\RuntimeException
      */
     public function setFailUrl($value)
     {
@@ -109,6 +112,7 @@ class AuthorizeRequest extends AbstractRequest
     /**
      * @param $value
      * @return \Omnipay\Common\Message\AbstractRequest
+     * @throws \Omnipay\Common\Exception\RuntimeException
      */
     public function setPageView($value)
     {
@@ -126,6 +130,7 @@ class AuthorizeRequest extends AbstractRequest
     /**
      * @param $value
      * @return \Omnipay\Common\Message\AbstractRequest
+     * @throws \Omnipay\Common\Exception\RuntimeException
      */
     public function setClientId($value)
     {
@@ -143,6 +148,7 @@ class AuthorizeRequest extends AbstractRequest
     /**
      * @param $value
      * @return \Omnipay\Common\Message\AbstractRequest
+     * @throws \Omnipay\Common\Exception\RuntimeException
      */
     public function setMerchantLogin($value)
     {
@@ -160,6 +166,7 @@ class AuthorizeRequest extends AbstractRequest
     /**
      * @param $value
      * @return \Omnipay\Common\Message\AbstractRequest
+     * @throws \Omnipay\Common\Exception\RuntimeException
      */
     public function setJsonParams($value)
     {
@@ -177,6 +184,7 @@ class AuthorizeRequest extends AbstractRequest
     /**
      * @param $value
      * @return \Omnipay\Common\Message\AbstractRequest
+     * @throws \Omnipay\Common\Exception\RuntimeException
      */
     public function setSessionTimeoutSecs($value)
     {
@@ -194,6 +202,7 @@ class AuthorizeRequest extends AbstractRequest
     /**
      * @param $value
      * @return \Omnipay\Common\Message\AbstractRequest
+     * @throws \Omnipay\Common\Exception\RuntimeException
      */
     public function setExpirationDate($value)
     {
@@ -211,6 +220,7 @@ class AuthorizeRequest extends AbstractRequest
     /**
      * @param $value
      * @return \Omnipay\Common\Message\AbstractRequest
+     * @throws \Omnipay\Common\Exception\RuntimeException
      */
     public function setBindingId($value)
     {
