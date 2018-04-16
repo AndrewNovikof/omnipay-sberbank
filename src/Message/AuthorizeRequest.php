@@ -19,11 +19,11 @@ class AuthorizeRequest extends AbstractRequest
         $data = [
             'orderNumber' => $this->getOrderNumber(),
             'amount' => $this->getAmount(),
-            'returnUrl' => $this->getReturnUrl(),
-            'currency' => $this->getCurrencyNumeric()
+            'returnUrl' => $this->getReturnUrl()
         ];
 
         $additionalParams = [
+            'currency',
             'failUrl',
             'description',
             'language',
