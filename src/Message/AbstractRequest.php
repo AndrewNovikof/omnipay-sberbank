@@ -2,6 +2,7 @@
 
 namespace Omnipay\Sberbank\Message;
 
+use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Exception\RuntimeException;
 use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
 
@@ -165,11 +166,11 @@ abstract class AbstractRequest extends BaseAbstractRequest
             ], $data)
         );
 
-        $responseClassName = str_replace('Request', 'Response', get_class($this));
+        $responseClassName = str_replace('Request', 'Response', \get_class($this));
         $reflection = new \ReflectionClass($responseClassName);
         if (!$reflection->isInstantiable()) {
             throw new RuntimeException(
-                'Class ' . str_replace('Request', 'Response', get_class($this)) . ' not found'
+                'Class ' . str_replace('Request', 'Response', \get_class($this)) . ' not found'
             );
         }
 

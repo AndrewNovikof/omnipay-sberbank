@@ -33,6 +33,13 @@ class AuthorizeRequestTest extends AbstractRequestTest
     protected $orderNumber;
 
     /**
+     * Currency
+     *
+     * @var string
+     */
+    protected $currency;
+
+    /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
@@ -41,6 +48,7 @@ class AuthorizeRequestTest extends AbstractRequestTest
         $this->amount = mt_rand(1, 100);
         $this->returnUrl = 'https://test.com/' . uniqid('', true);
         $this->orderNumber = uniqid('order_number_', true);
+        $this->currency = 'RUB';
 
         parent::setUp();
     }
@@ -77,7 +85,8 @@ class AuthorizeRequestTest extends AbstractRequestTest
         return [
             'orderNumber' => $this->orderNumber,
             'amount' => $this->amount,
-            'returnUrl' => $this->returnUrl
+            'returnUrl' => $this->returnUrl,
+            'currency' => $this->currency
         ];
     }
 

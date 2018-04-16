@@ -24,11 +24,9 @@ class BindCardRequest extends AbstractRequest
     {
         $this->validate('bindingId');
 
-        $data = [
+        return [
             'bindingId' => $this->getBindingId()
         ];
-
-        return $data;
     }
 
     /**
