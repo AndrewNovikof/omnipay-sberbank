@@ -7,7 +7,7 @@
 
 # Introduction
 
-This library implements the work with [Sberbank acquiring api](https://rsb2-eyufrolovichevasberbankru-dev.developer.eu.apiconnect.ibmcloud.com/acquiring-api-rest-about) via [theleague Omnipay](https://omnipay.thephpleague.com/) processing library for PHP. It has a clear and consistent API, is fully unit tested.
+This library implements the work with [Sberbank acquiring api](https://developer.sberbank.ru/doc/v1/acquiring/rest-requests-about) via [theleague Omnipay](https://omnipay.thephpleague.com/) processing library for PHP. It has a clear and consistent API, is fully unit tested.
 
 This package supports PHP 7.1 and higher 
 
@@ -104,7 +104,7 @@ if ($response->isRedirect()) {
 
 # Order registration without pre-authorization
 
-More about this request you'll see in Sberbank official [documentation](https://developer.sberbank.ru/acquiring-api-rest-requests1pay/#zapros-reg-zakaza) or in our source code
+More about this request you'll see in Sberbank official [documentation -> item 1](https://developer.sberbank.ru/doc/v1/acquiring/rest-requests1pay) or in our source code
 
 ```php
 use Omnipay\Omnipay;
@@ -152,7 +152,7 @@ if ($response->isRedirect()) {
 
 # Order registration with pre-authorization
 
-More about this request you'll see in Sberbank official [documentation](https://developer.sberbank.ru/acquiring-api-rest-requests2pay/#acq-rest-1) or in our source code
+More about this request you'll see in Sberbank official [documentation -> item 1](https://developer.sberbank.ru/doc/v1/acquiring/rest-requests2pay) or in our source code
 
 ```php
 use Omnipay\Omnipay;
@@ -201,7 +201,7 @@ if ($response->isRedirect()) {
 
 # Order completion after pre-authorization
 
-More about this request you'll see in Sberbank official [documentation](https://developer.sberbank.ru/acquiring-api-rest-requests2pay/#acq-rest-2) or in our source code
+More about this request you'll see in Sberbank official [documentation -> item 2](https://developer.sberbank.ru/doc/v1/acquiring/rest-requests2pay) or in our source code
 
 ```php
 use Omnipay\Omnipay;
@@ -233,7 +233,7 @@ if ($response->isSuccessful()) {
 
 # Orders status
 
-More about this request you'll see in Sberbank official [documentation](https://developer.sberbank.ru/acquiring-api-rest-requests2pay/#acq-rest-5) or in our source code
+More about this request you'll see in Sberbank official [documentation -> item 5](https://developer.sberbank.ru/doc/v1/acquiring/rest-requests2pay) or in our source code
 
 This method work for `completeAuthorize()` and `completePurchase()` requests of Omnipay.
 
@@ -282,7 +282,7 @@ if ($response->isSuccessful()) {
 
 # Extended order status
 
-More about this request you'll see in Sberbank official [documentation](https://developer.sberbank.ru/acquiring-api-rest-requests2pay/#acq-rest-6) or in our source code
+More about this request you'll see in Sberbank official [documentation -> item 6](https://developer.sberbank.ru/doc/v1/acquiring/rest-requests2pay) or in our source code
 
 ```php
 use Omnipay\Omnipay;
@@ -344,7 +344,7 @@ if ($response->isSuccessful()) {
 
 # Void order
 
-More about this request you'll see in Sberbank official [documentation](https://developer.sberbank.ru/acquiring-api-rest-requests2pay/#acq-rest-3) or in our source code
+More about this request you'll see in Sberbank official [documentation -> item 3](https://developer.sberbank.ru/doc/v1/acquiring/rest-requests2pay) or in our source code
 
 To request cancellation of payment for an order, use the request reverse.do. The cancellation function is available for a limited time after payment, the exact terms should be specified in the Bank.
 
@@ -382,7 +382,7 @@ if ($response->isSuccessful()) {
 
 # Refund for an order payment
 
-More about this request you'll see in Sberbank official [documentation](https://developer.sberbank.ru/acquiring-api-rest-requests2pay/#acq-rest-4) or in our source code
+More about this request you'll see in Sberbank official [documentation -> item 4](https://developer.sberbank.ru/doc/v1/acquiring/rest-requests2pay) or in our source code
 
 For this request, the funds will be returned to the payer on the specified order. The request will end with an error if the funds for this order were not written off. The system allows you to return funds more than once, but in total no more than the original amount of write-off.
 
@@ -419,7 +419,7 @@ if ($response->isSuccessful()) {
 
 # Verify the involvement of the map in 3DS
 
-More about this request you'll see in Sberbank official [documentation](https://developer.sberbank.ru/acquiring-api-rest-requests2pay/#acq-rest-7) or in our source code
+More about this request you'll see in Sberbank official [documentation -> item 7](https://developer.sberbank.ru/doc/v1/acquiring/rest-requests2pay) or in our source code
 
 ```php
 use Omnipay\Omnipay;
@@ -454,7 +454,7 @@ if ($response->isSuccessful()) {
 
 # Statistics on payments for the period
 
-More about this request you'll see in Sberbank official [documentation](https://developer.sberbank.ru/acquiring-api-rest-requests2pay/#acq-rest-8) or in our source code
+More about this request you'll see in Sberbank official [documentation -> item 8](https://developer.sberbank.ru/doc/v1/acquiring/rest-requests2pay) or in our source code
 
 ```php
 use Omnipay\Omnipay;
@@ -525,7 +525,7 @@ if ($response->isSuccessful()) {
 
 # Add a card to the list of SSL-cards
 
-More about this request you'll see in Sberbank official [documentation](https://developer.sberbank.ru/acquiring-api-rest-requests2pay/#acq-rest-9) or in our source code
+More about this request you'll see in Sberbank official [documentation -> item 9](https://developer.sberbank.ru/doc/v1/acquiring/rest-requests2pay) or in our source code
 
 ```php
 use Omnipay\Omnipay;
