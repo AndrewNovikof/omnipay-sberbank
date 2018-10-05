@@ -156,14 +156,14 @@ abstract class AbstractRequest extends BaseAbstractRequest
     {
         $url = $this->getEndPoint() . $this->getMethod();
         $this->validate('userName', 'password');
-        $httpResponse = $this->httpClient->request(
+        $httpResponse = $this->httpClient->send(
             $this->getHttpMethod(),
             $url,
             $this->getHeaders(),
-            json_encode(array_merge([
+            array_merge([
                 'userName' => $this->getUserName(),
                 'password' => $this->getPassword()
-            ], $data))
+            ], $data)
         );
 
         $responseClassName = str_replace('Request', 'Response', \get_class($this));
