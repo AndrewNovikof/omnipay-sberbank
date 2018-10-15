@@ -58,7 +58,7 @@ class VoidRequestTest extends AbstractRequestTest
      *
      * @return string
      */
-    public function testGetMethod()
+    public function getMethod()
     {
         return 'reverse.do';
     }

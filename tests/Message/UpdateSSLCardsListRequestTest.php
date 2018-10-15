@@ -55,7 +55,7 @@ class UpdateSSLCardsListRequestTest extends AbstractRequestTest
      *
      * @return string
      */
-    public function testGetMethod()
+    public function getMethod()
     {
         return 'updateSSLCardList.do';
     }

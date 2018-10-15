@@ -68,7 +68,7 @@ class AuthorizeRequestTest extends AbstractRequestTest
      *
      * @return string
      */
-    public function testGetMethod()
+    public function getMethod()
     {
         $this->assertEquals('register.do', $this->request->getMethod());
         $this->request->setTwoStage(true);

@@ -44,7 +44,7 @@ class GetBindingsRequestTest extends AbstractRequestTest
      *
      * @return string
      */
-    public function testGetMethod()
+    public function getMethod()
     {
         $this->assertEquals('getBindings.do', $this->request->getMethod());
     }

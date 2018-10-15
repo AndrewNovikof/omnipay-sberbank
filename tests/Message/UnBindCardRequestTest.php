@@ -14,7 +14,7 @@ class UnBindCardRequestTest extends BindCardRequestTest
      *
      * @return string
      */
-    public function testGetMethod()
+    public function getMethod()
     {
         $this->assertEquals('unBindCard.do', $this->request->getMethod());
     }

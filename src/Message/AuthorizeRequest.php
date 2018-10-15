@@ -241,14 +241,14 @@ class AuthorizeRequest extends AbstractRequest
         $this->validate('userName', 'password');
         $data['currency'] = $this->getCurrencyNumeric();
         $data['amount'] = $this->getAmountInteger();
-        $httpResponse = $this->httpClient->send(
+        $httpResponse = $this->httpClient->request(
             $this->getHttpMethod(),
             $url,
             $this->getHeaders(),
-            array_merge([
+            json_encode(array_merge([
                 'userName' => $this->getUserName(),
                 'password' => $this->getPassword()
-            ], $data)
+            ], $data))
         );
 
         $responseClassName = str_replace('Request', 'Response', \get_class($this));

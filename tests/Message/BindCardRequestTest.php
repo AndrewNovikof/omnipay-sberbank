@@ -44,7 +44,7 @@ class BindCardRequestTest extends AbstractRequestTest
      *
      * @return string
      */
-    public function testGetMethod()
+    public function getMethod()
     {
         $this->assertEquals('bindCard.do', $this->request->getMethod());
     }

@@ -52,7 +52,7 @@ class GetBindingsByCardOrIdRequestTest extends AbstractRequestTest
      *
      * @return string
      */
-    public function testGetMethod()
+    public function getMethod()
     {
         $this->assertEquals('getBindingsByCardOrId.do', $this->request->getMethod());
     }

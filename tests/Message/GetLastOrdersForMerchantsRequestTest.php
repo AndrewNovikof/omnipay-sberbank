@@ -77,7 +77,7 @@ class GetLastOrdersForMerchantsRequestTest extends AbstractRequestTest
      *
      * @return string
      */
-    public function testGetMethod()
+    public function getMethod()
     {
         $this->assertEquals('getLastOrdersForMerchants.do', $this->request->getMethod());
     }

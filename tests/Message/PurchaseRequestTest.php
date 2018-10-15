@@ -73,7 +73,7 @@ class PurchaseRequestTest extends AbstractRequestTest
      *
      * @return string
      */
-    public function testGetMethod()
+    public function getMethod()
     {
         return 'paymentOrderBinding.do';
     }

@@ -53,7 +53,7 @@ class VerifyEnrollmentRequestTest extends AbstractRequestTest
      *
      * @return string
      */
-    public function testGetMethod()
+    public function getMethod()
     {
         return 'verifyEnrollment';
     }

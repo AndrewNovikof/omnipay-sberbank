@@ -44,7 +44,7 @@ class CaptureRequestTest extends AbstractRequestTest
      *
      * @return string
      */
-    public function testGetMethod()
+    public function getMethod()
     {
         $this->assertEquals('deposit.do', $this->request->getMethod());
     }

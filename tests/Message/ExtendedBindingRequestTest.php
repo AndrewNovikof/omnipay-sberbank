@@ -64,9 +64,9 @@ class ExtendedBindingRequestTest extends AbstractRequestTest
      *
      * @return string
      */
-    public function testGetMethod()
+    public function getMethod()
     {
-        return ' extendBinding.do';
+        return 'extendBinding.do';
     }
 
     /**

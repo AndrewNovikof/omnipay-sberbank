@@ -92,5 +92,5 @@ abstract class AbstractRequestTest extends TestCase
      *
      * @return string
      */
-    abstract protected function testGetMethod();
+    abstract protected function getMethod();
 }

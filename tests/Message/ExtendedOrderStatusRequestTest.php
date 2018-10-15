@@ -56,7 +56,7 @@ class ExtendedOrderStatusRequestTest extends AbstractRequestTest
      *
      * @return string
      */
-    public function testGetMethod()
+    public function getMethod()
     {
         return 'getOrderStatusExtended.do';
     }
