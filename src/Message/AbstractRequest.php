@@ -163,7 +163,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
             ],
             $data
         );
-        
+
         $httpResponse = $this->httpClient->request(
             $this->getHttpMethod(),
             $url,
