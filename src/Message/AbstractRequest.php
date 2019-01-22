@@ -156,6 +156,12 @@ abstract class AbstractRequest extends BaseAbstractRequest
     {
         $url = $this->getEndPoint() . $this->getMethod();
         $this->validate('userName', 'password');
+        if(array_key_exists('currency', $data)) {
+            $data['currency'] = $this->getCurrencyNumeric();
+        }
+        if(array_key_exists('amount', $data)) {
+            $data['amount'] = $this->getAmountInteger();
+        }
         $data = array_merge(
             [
                 'userName' => $this->getUserName(),

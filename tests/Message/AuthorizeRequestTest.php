@@ -14,7 +14,7 @@ class AuthorizeRequestTest extends AbstractRequestTest
     /**
      * Amount to pay
      *
-     * @var float
+     * @var string
      */
     protected $amount;
 
@@ -45,7 +45,7 @@ class AuthorizeRequestTest extends AbstractRequestTest
      */
     public function setUp()
     {
-        $this->amount = mt_rand(1, 100);
+        $this->amount = strval(random_int(1000, 100000)/100);
         $this->returnUrl = 'https://test.com/' . uniqid('', true);
         $this->orderNumber = uniqid('order_number_', true);
         $this->currency = 'RUB';
