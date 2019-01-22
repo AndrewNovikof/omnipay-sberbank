@@ -241,14 +241,19 @@ class AuthorizeRequest extends AbstractRequest
         $this->validate('userName', 'password');
         $data['currency'] = $this->getCurrencyNumeric();
         $data['amount'] = $this->getAmountInteger();
+        $data = array_merge(
+            [
+                'userName' => $this->getUserName(),
+                'password' => $this->getPassword(),
+            ],
+            $data
+        );
+
         $httpResponse = $this->httpClient->request(
             $this->getHttpMethod(),
             $url,
             $this->getHeaders(),
-            json_encode(array_merge([
-                'userName' => $this->getUserName(),
-                'password' => $this->getPassword()
-            ], $data))
+            http_build_query($data, '', '&')
         );
 
         $responseClassName = str_replace('Request', 'Response', \get_class($this));
@@ -259,6 +264,8 @@ class AuthorizeRequest extends AbstractRequest
             );
         }
 
-        return $reflection->newInstance($this, json_decode($httpResponse->getBody(true), true));
+        $content = json_decode($httpResponse->getBody()->getContents(), true);
+
+        return $reflection->newInstance($this, $content);
     }
 }

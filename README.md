@@ -44,7 +44,7 @@ $gateway = Omnipay::create('Sberbank');
 $gateway->authorize(
     [
        'orderNumber' => $localOrderNumber, // local order number
-       'amount' => $order_amount * 100, // The amount of payment in kopecks (or cents)
+       'amount' => $order_amount, // The amount of payment (you can use integer, decimal with 2 precisions or string equal to decimal
        'returnUrl' => $callback_url // succesfull callback url
     ]
 );
@@ -113,7 +113,7 @@ $gateway = Omnipay::create('Sberbank');
 $response = $gateway->authorize(
     [
        'orderNumber' => $localOrderNumber, // local order number
-       'amount' => $order_amount * 100, // The amount of payment in kopecks (or cents)
+       'amount' => $order_amount, // The amount of payment (you can use integer, decimal with 2 precisions or string equal to decimal
        'returnUrl' => $callback_url, // succesfull callback url
        'description' => 'Order Description'
     ]
@@ -161,7 +161,7 @@ $gateway = Omnipay::create('Sberbank');
 $response = $gateway->authorize(
     [
        'orderNumber' => $localOrderNumber, // local order number
-       'amount' => $order_amount * 100, // The amount of payment in kopecks (or cents)
+       'amount' => $order_amount, // The amount of payment (you can use integer, decimal with 2 precisions or string equal to decimal
        'returnUrl' => $callback_url, // succesfull callback url
        'description' => 'Order Description'
     ]
@@ -210,7 +210,7 @@ $gateway = Omnipay::create('Sberbank');
 $response = $gateway->capture(
     [
        'orderId' => $localOrderNumber, // gateway order number
-       'amount' => $order_amount * 100, // The amount of payment in kopecks (or cents)
+       'amount' => $order_amount, // The amount of payment (you can use integer, decimal with 2 precisions or string equal to decimal
     ]
 )->setUserName('merchant_login')
  ->setPassword('merchant_password')
