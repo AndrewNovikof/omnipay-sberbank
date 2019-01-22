@@ -228,4 +228,44 @@ class AuthorizeRequest extends AbstractRequest
     {
         return $this->setParameter('bindingId', $value);
     }
+
+    /**
+     * @param mixed $data
+     * @return object|\Omnipay\Common\Message\ResponseInterface
+     * @throws \ReflectionException
+     * @throws \Omnipay\Common\Exception\InvalidRequestException
+     */
+    public function sendData($data)
+    {
+        $url = $this->getEndPoint() . $this->getMethod();
+        $this->validate('userName', 'password');
+        $data['currency'] = $this->getCurrencyNumeric();
+        $data['amount'] = $this->getAmountInteger();
+        $data = array_merge(
+            [
+                'userName' => $this->getUserName(),
+                'password' => $this->getPassword(),
+            ],
+            $data
+        );
+
+        $httpResponse = $this->httpClient->request(
+            $this->getHttpMethod(),
+            $url,
+            $this->getHeaders(),
+            http_build_query($data, '', '&')
+        );
+
+        $responseClassName = str_replace('Request', 'Response', \get_class($this));
+        $reflection = new \ReflectionClass($responseClassName);
+        if (!$reflection->isInstantiable()) {
+            throw new RuntimeException(
+                'Class ' . str_replace('Request', 'Response', \get_class($this)) . ' not found'
+            );
+        }
+
+        $content = json_decode($httpResponse->getBody()->getContents(), true);
+
+        return $reflection->newInstance($this, $content);
+    }
 }

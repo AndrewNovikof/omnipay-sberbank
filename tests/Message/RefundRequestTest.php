@@ -29,7 +29,7 @@ class RefundRequestTest extends AbstractRequestTest
     public function setUp()
     {
         $this->orderId = mt_rand(1, 100);
-        $this->amount = strval(random_int(1000, 100000)/100);
+        $this->amount = mt_rand(1, 100500);
 
         parent::setUp();
     }

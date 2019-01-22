@@ -24,7 +24,7 @@ class CaptureRequestTest extends AbstractRequestTest
      */
     public function setUp()
     {
-        $this->amount = strval(random_int(1000, 100000)/100);
+        $this->amount = random_int(1000, 100000);
         
         parent::setUp();
     }

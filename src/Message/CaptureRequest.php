@@ -18,7 +18,7 @@ class CaptureRequest extends AbstractRequest
 
         $data = [
             'orderId' => $this->getOrderId(),
-            'amount' => $this->getAmount(),
+            'amount' => $this->getAmountInteger(),
         ];
 
         return $data;
