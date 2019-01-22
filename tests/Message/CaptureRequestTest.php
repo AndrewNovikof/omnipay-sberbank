@@ -69,7 +69,9 @@ class CaptureRequestTest extends AbstractRequestTest
      */
     public function testData()
     {
-        $this->assertEquals($this->request->getData(), $this->getRequestParameters());
+        $params = $this->getRequestParameters();
+        $params['amount'] = $params['amount'] * 100;
+        $this->assertEquals($this->request->getData(), $params);
     }
 
     /**

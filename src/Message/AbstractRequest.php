@@ -2,7 +2,6 @@
 
 namespace Omnipay\Sberbank\Message;
 
-use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Exception\RuntimeException;
 use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
 
