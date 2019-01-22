@@ -2,7 +2,6 @@
 
 namespace Omnipay\Sberbank\Message;
 
-use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Exception\RuntimeException;
 use Omnipay\Common\Message\AbstractRequest as BaseAbstractRequest;
 
@@ -174,7 +173,7 @@ abstract class AbstractRequest extends BaseAbstractRequest
             );
         }
 
-        return $reflection->newInstance($this, json_decode($httpResponse->getBody(true), true));
+        return $reflection->newInstance($this, json_decode($httpResponse->getBody(), true));
     }
 
     /**
