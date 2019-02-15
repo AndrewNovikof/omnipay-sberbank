@@ -13,6 +13,7 @@ use Omnipay\Sberbank\Message\GetBindingsRequest;
 use Omnipay\Sberbank\Message\GetLastOrdersForMerchantsRequest;
 use Omnipay\Sberbank\Message\OrderStatusRequest;
 use Omnipay\Sberbank\Message\PurchaseRequest;
+use Omnipay\Sberbank\Message\OrderReceiptStatusRequest;
 use Omnipay\Sberbank\Message\RefundRequest;
 use Omnipay\Sberbank\Message\UnBindCardRequest;
 use Omnipay\Sberbank\Message\UpdateSSLCardListRequest;
@@ -308,6 +309,27 @@ class Gateway extends AbstractGateway
     public function supportsExtendedOrderStatus()
     {
         return method_exists($this, 'extendedOrderStatus');
+    }
+
+    /**
+     * Receipt status request
+     *
+     * @param array $options
+     * @return RequestInterface
+     */
+    public function orderReceiptStatus(array $options = []): RequestInterface
+    {
+        return $this->createRequest(OrderReceiptStatusRequest::class, $options);
+    }
+
+    /**
+     * Supports receiptStatus
+     *
+     * @return boolean True if this gateway supports the orderReceiptStatus() method
+     */
+    public function supportsOrderReceiptStatus()
+    {
+        return method_exists($this, 'orderReceiptStatus');
     }
 
     /**
