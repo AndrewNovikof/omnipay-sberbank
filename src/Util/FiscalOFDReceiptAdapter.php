@@ -37,7 +37,7 @@ class FiscalOFDReceiptAdapter
         $array = [
             'orderCreationDate' => $this->order->getCreationDate() !== null ? $this->order->getCreationDate()->format('U') : time(),
             'cartItems'         => [],
-            'customerDetails'   => $this->customerToArray() ?: [],
+            'customerDetails'   => $this->customerToArray() ?: null,
         ];
 
         $this->position = 1;
