@@ -65,7 +65,7 @@ class OrderReceiptStatusResponse extends AbstractResponse
     public function getReceipt($index)
     {
         $receiptList = $this->getReceipts();
-        return array_key_exists('receipt', $receiptList[$index]) ? $receiptList[$index] : [];
+        return array_key_exists($index, $receiptList) ? $receiptList[$index] : [];
     }
 
     /**
@@ -130,7 +130,7 @@ class OrderReceiptStatusResponse extends AbstractResponse
     public function getReceiptDatetime($index)
     {
         $receipt = $this->getReceipt($index);
-        return array_key_exists('receipt_datetime', $receipt) ? $receipt['receipt_datetime'] : null;
+        return array_key_exists('receipt_date_time', $receipt) ? $receipt['receipt_date_time'] : null;
     }
 
     /**
@@ -209,6 +209,19 @@ class OrderReceiptStatusResponse extends AbstractResponse
     {
         $receipt = $this->getReceipt($index);
         return array_key_exists('serial_number', $receipt) ? $receipt['serial_number'] : null;
+    }
+
+    /**
+     * ECR registration number
+     *
+     * @param int $index
+     *
+     * @return string|null
+     */
+    public function getReceiptEcrRegistrationNumber($index)
+    {
+        $receipt = $this->getReceipt($index);
+        return array_key_exists('ecr_registration_number', $receipt) ? $receipt['ecr_registration_number'] : null;
     }
 
     /**

@@ -18,6 +18,7 @@
   ],
   "require": {
     "php": "^7.1",
+    "ext-json": "*",
     "omnipay/common": "v3.0.2"
   },
   "require-dev": {

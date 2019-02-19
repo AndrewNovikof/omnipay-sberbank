@@ -193,14 +193,51 @@ abstract class AbstractRequest extends BaseAbstractRequest
     public function specifyAdditionalParameters(array $data, array $additionalParams): array
     {
         foreach ($additionalParams as $param) {
-            $method = 'get' . ucfirst($param);
-            if (method_exists($this, $method)) {
-                $value = $this->{$method}();
-                if ($value) {
-                    $data[$param] = $value;
-                }
+            $value = $this->getParameterValue($param);
+            if ($value !== null) {
+                $data[$param] = $value;
             }
         }
+
         return $data;
+    }
+
+    /**
+     * Add additional json encoded params to data
+     *
+     * @param array $data
+     * @param array $additionalParams
+     * @return array
+     */
+    public function specifyAdditionalJsonParameters(array $data, array $additionalParams): array
+    {
+        foreach ($additionalParams as $param) {
+            $value = $this->getParameterValue($param);
+            if ($value !== null) {
+                $data[$param] = json_encode($value);
+            }
+        }
+
+        return $data;
+    }
+
+    /**
+     * Get parameter value by name
+     *
+     * @param string $param
+     *
+     * @return mixed|null
+     */
+    protected function getParameterValue($param)
+    {
+        $method = 'get' . ucfirst($param);
+        if (method_exists($this, $method)) {
+            $value = $this->{$method}();
+            if ($value) {
+                return $value;
+            }
+        }
+
+        return null;
     }
 }
