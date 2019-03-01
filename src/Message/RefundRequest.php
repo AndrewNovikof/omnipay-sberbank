@@ -2,8 +2,13 @@
 
 namespace Omnipay\Sberbank\Message;
 
+use Fiscal\OFD\OrderInterface;
+use Fiscal\OFD\OrderItemInterface;
+use Omnipay\Sberbank\Util\FiscalOFDAdapter;
+
 /**
  * Class RefundRequest
+ *
  * @package Omnipay\Sberbank\Message
  */
 class RefundRequest extends AbstractRequest
@@ -21,7 +26,11 @@ class RefundRequest extends AbstractRequest
             'amount' => $this->getAmountInteger(),
         ];
 
-        return $data;
+        $additionalJsonParams = [
+            'refundItems',
+        ];
+
+        return $this->specifyAdditionalJsonParameters($data, $additionalJsonParams);
     }
 
     /**
@@ -30,5 +39,27 @@ class RefundRequest extends AbstractRequest
     public function getMethod()
     {
         return 'refund.do';
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRefundItems()
+    {
+        return $this->getParameter('refundItems');
+    }
+
+    /**
+     * @param OrderInterface|array $value
+     * @return \Omnipay\Common\Message\AbstractRequest
+     * @throws \Omnipay\Common\Exception\RuntimeException
+     */
+    public function setRefundItems($value)
+    {
+        if(interface_exists('Fiscal\\OFD\\OrderInterface') && $value instanceof OrderInterface) {
+            $adapter = new FiscalOFDAdapter($value);
+            $value = $adapter->getRefundItems();
+        }
+        return $this->setParameter('refundItems', $value);
     }
 }

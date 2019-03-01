@@ -4,7 +4,7 @@ namespace Omnipay\Sberbank\Message;
 
 use Fiscal\OFD\OrderInterface;
 use Omnipay\Common\Exception\RuntimeException;
-use Omnipay\Sberbank\Util\FiscalOFDReceiptAdapter;
+use Omnipay\Sberbank\Util\FiscalOFDAdapter;
 
 /**
  * Class AuthorizeRequest
@@ -240,7 +240,7 @@ class AuthorizeRequest extends AbstractRequest
     }
 
     /**
-     * @return mixed
+     * @return array|null
      */
     public function getOrderBundle()
     {
@@ -248,14 +248,15 @@ class AuthorizeRequest extends AbstractRequest
     }
 
     /**
-     * @param $value
+     * @param OrderInterface|array|null $value
+     *
      * @return \Omnipay\Common\Message\AbstractRequest
      * @throws \Omnipay\Common\Exception\RuntimeException
      */
     public function setOrderBundle($value)
     {
         if(interface_exists('Fiscal\\OFD\\OrderInterface') && $value instanceof OrderInterface) {
-            $adapter = new FiscalOFDReceiptAdapter($value);
+            $adapter = new FiscalOFDAdapter($value);
             $value = $adapter->getOrderBundle();
         }
         return $this->setParameter('orderBundle', $value);
