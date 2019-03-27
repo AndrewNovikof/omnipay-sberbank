@@ -2,7 +2,9 @@
 
 namespace Omnipay\Sberbank\Message;
 
+use Fiscal\OFD\OrderInterface;
 use Omnipay\Common\Exception\RuntimeException;
+use Omnipay\Sberbank\Util\FiscalOFDAdapter;
 
 /**
  * Class AuthorizeRequest
@@ -32,13 +34,21 @@ class AuthorizeRequest extends AbstractRequest
             'pageView',
             'clientId',
             'merchantLogin',
-            'jsonParams',
             'sessionTimeoutSecs',
             'expirationDate',
-            'bindingId'
+            'bindingId',
+            'taxSystem'
         ];
 
-        return $this->specifyAdditionalParameters($data, $additionalParams);
+        $additionalJsonParams = [
+            'jsonParams',
+            'orderBundle',
+        ];
+
+        return array_merge(
+            $this->specifyAdditionalParameters($data, $additionalParams),
+            $this->specifyAdditionalJsonParameters($data, $additionalJsonParams)
+        );
     }
 
     /**
@@ -227,6 +237,47 @@ class AuthorizeRequest extends AbstractRequest
     public function setBindingId($value)
     {
         return $this->setParameter('bindingId', $value);
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getOrderBundle()
+    {
+        return $this->getParameter('orderBundle');
+    }
+
+    /**
+     * @param OrderInterface|array|null $value
+     *
+     * @return \Omnipay\Common\Message\AbstractRequest
+     * @throws \Omnipay\Common\Exception\RuntimeException
+     */
+    public function setOrderBundle($value)
+    {
+        if(interface_exists('Fiscal\\OFD\\OrderInterface') && $value instanceof OrderInterface) {
+            $adapter = new FiscalOFDAdapter($value);
+            $value = $adapter->getOrderBundle();
+        }
+        return $this->setParameter('orderBundle', $value);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTaxSystem()
+    {
+        return $this->getParameter('taxSystem');
+    }
+
+    /**
+     * @param int $value
+     * @return \Omnipay\Common\Message\AbstractRequest
+     * @throws \Omnipay\Common\Exception\RuntimeException
+     */
+    public function setTaxSystem($value)
+    {
+        return $this->setParameter('taxSystem', $value);
     }
 
     /**
