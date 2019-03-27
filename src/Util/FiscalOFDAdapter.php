@@ -64,9 +64,14 @@ class FiscalOFDAdapter
      *
      * @return array
      */
-    public function getRefundItems() :array
+    public function getRefundItems(): array
     {
-        return ['items' => array_map([$this, 'cartItemToArray'], $this->order->getItems())];
+        $refundItems = ['items' => array_map([$this, 'cartItemToArray'], $this->order->getItems())];
+        if ($this->order instanceof OrderDeliverableInterface && $this->order->getDeliveryOrderItem() !== null) {
+            $refundItems['items'][] = $this->cartItemToArray($this->order->getDeliveryOrderItem());
+        }
+
+        return $refundItems;
     }
 
     /**
@@ -74,9 +79,14 @@ class FiscalOFDAdapter
      *
      * @return array
      */
-    public function getDepositItems() :array
+    public function getDepositItems(): array
     {
-        return ['items' => array_map([$this, 'cartItemToArray'], $this->order->getItems())];
+        $depositItems = ['items' => array_map([$this, 'cartItemToArray'], $this->order->getItems())];
+        if ($this->order instanceof OrderDeliverableInterface && $this->order->getDeliveryOrderItem() !== null) {
+            $depositItems['items'][] = $this->cartItemToArray($this->order->getDeliveryOrderItem());
+        }
+
+        return $depositItems;
     }
 
     /**
@@ -133,8 +143,8 @@ class FiscalOFDAdapter
 
         if ($this->order->getCustomer() !== null) {
             $customerData = [
-                'email' => $this->order->getCustomer()->getEmail(),
-                'phone' => $this->order->getCustomer()->getPhone(),
+                'email'   => $this->order->getCustomer()->getEmail(),
+                'phone'   => $this->order->getCustomer()->getPhone(),
                 'contact' => $this->order->getCustomer()->getContact(),
             ];
         }
@@ -147,7 +157,7 @@ class FiscalOFDAdapter
      *
      * @return int|string
      */
-    private function formatOrderCreationDate() : string
+    private function formatOrderCreationDate(): string
     {
         return $this->order->getCreationDate() !== null ? $this->order->getCreationDate()->format('U') : (string) time();
     }
