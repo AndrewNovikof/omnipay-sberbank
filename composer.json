@@ -16,10 +16,12 @@
     "api",
     "payment"
   ],
+
   "require": {
     "php": "^7.1",
-    "omnipay/common": "v3.0.3"
+    "omnipay/common": "v3.1.2"
   },
+
   "require-dev": {
     "omnipay/tests": "^3",
     "phpunit/phpunit": "^5.7|^6",
