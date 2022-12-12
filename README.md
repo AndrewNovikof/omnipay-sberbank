@@ -9,7 +9,8 @@
 
 This library implements the work with [Sberbank acquiring api](https://developer.sberbank.ru/doc/v1/acquiring/rest-requests-about) via [theleague Omnipay](https://omnipay.thephpleague.com/) processing library for PHP. It has a clear and consistent API, is fully unit tested.
 
-This package supports PHP 7.1 and higher 
+The package release 3.2.2 version supports PHP 7.1 and higher and omnipay/common v3.0.3
+The package release 3.3.0 version supports PHP 8.0 and higher and omnipay/common v3.2
 
 # Download
 
