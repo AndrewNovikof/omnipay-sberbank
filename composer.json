@@ -23,7 +23,7 @@
   "require-dev": {
     "omnipay/tests": "^4",
     "phpunit/phpunit": "^8|^9",
-    "squizlabs/php_codesniffer": "4.*"
+    "squizlabs/php_codesniffer": "3.7.1"
   },
   "autoload": {
     "psr-4": {
