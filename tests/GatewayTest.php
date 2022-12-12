@@ -50,7 +50,7 @@ class GatewayTest extends GatewayTestCase
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -168,40 +168,42 @@ class GatewayTest extends GatewayTestCase
         $this->assertInstanceOf(GetBindingsRequest::class, $this->gateway->getBindings());
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testDeleteCard()
     {
-        $this->assertFalse($this->gateway->supportsDeleteCard());
-        $this->assertTrue(method_exists($this->gateway, 'deleteCard'));
-        $this->assertInstanceOf(BadMethodCallException::class, $this->gateway->deleteCard());
+
+        try {
+            $this->assertFalse($this->gateway->supportsDeleteCard());
+            $this->assertTrue(method_exists($this->gateway, 'deleteCard'));
+        } catch (\Exception $e) {
+            $this->expectException(BadMethodCallException::class);
+        }
+
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testCreateCard()
     {
-        $this->assertFalse($this->gateway->supportsCreateCard());
-        $this->assertTrue(method_exists($this->gateway, 'createCard'));
-        $this->assertInstanceOf(BadMethodCallException::class, $this->gateway->createCard());
+        try {
+            $this->assertFalse($this->gateway->supportsCreateCard());
+            $this->assertTrue(method_exists($this->gateway, 'createCard'));
+        } catch (\Exception $e) {
+            $this->expectException(BadMethodCallException::class);
+        }
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testUpdateCard()
     {
-        $this->assertFalse($this->gateway->supportsUpdateCard());
-        $this->assertTrue(method_exists($this->gateway, 'updateCard'));
-        $this->assertInstanceOf(BadMethodCallException::class, $this->gateway->updateCard());
+        try {
+            $this->assertFalse($this->gateway->supportsUpdateCard());
+            $this->assertTrue(method_exists($this->gateway, 'updateCard'));
+        } catch (\Exception $e) {
+            $this->expectException(BadMethodCallException::class);
+        }
     }
 
     public function testSupportsCreateCard()
     {
         $supportsCreate = $this->gateway->supportsCreateCard();
-        $this->assertInternalType('boolean', $supportsCreate);
+        $this->assertIsBool($supportsCreate);
 
         if ($supportsCreate) {
             $this->assertInstanceOf('Omnipay\Common\Message\RequestInterface', $this->gateway->createCard());
@@ -211,7 +213,7 @@ class GatewayTest extends GatewayTestCase
     public function testSupportsDeleteCard()
     {
         $supportsDelete = $this->gateway->supportsDeleteCard();
-        $this->assertInternalType('boolean', $supportsDelete);
+        $this->assertIsBool($supportsDelete);
 
         if ($supportsDelete) {
             $this->assertInstanceOf('Omnipay\Common\Message\RequestInterface', $this->gateway->deleteCard());
@@ -221,7 +223,7 @@ class GatewayTest extends GatewayTestCase
     public function testSupportsUpdateCard()
     {
         $supportsUpdate = $this->gateway->supportsUpdateCard();
-        $this->assertInternalType('boolean', $supportsUpdate);
+        $this->assertIsBool($supportsUpdate);
 
         if ($supportsUpdate) {
             $this->assertInstanceOf('Omnipay\Common\Message\RequestInterface', $this->gateway->updateCard());
