@@ -1,6 +1,6 @@
 # Sberbank acquiring for PHP 
 
-[![Build Status](https://travis-ci.org/AndrewNovikof/omnipay-sberbank.svg?branch=master)](https://travis-ci.org/AndrewNovikof/omnipay-sberbank)
+[![Build Status](https://travis-ci.com/AndrewNovikof/omnipay-sberbank.svg?branch=master)](https://travis-ci.org/AndrewNovikof/omnipay-sberbank)
 [![Latest Stable Version](https://poser.pugx.org/andrewnovikof/omnipay-sberbank/v/stable)](https://packagist.org/packages/andrewnovikof/omnipay-sberbank)
 [![Total Downloads](https://poser.pugx.org/andrewnovikof/omnipay-sberbank/downloads)](https://packagist.org/packages/andrewnovikof/omnipay-sberbank)
 [![License](https://poser.pugx.org/andrewnovikof/omnipay-sberbank/license)](https://packagist.org/packages/andrewnovikof/omnipay-sberbank)
