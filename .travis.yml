@@ -1,8 +1,8 @@
 language: php
 
 php:
-  - 7.1
-  - 7.2
+  - 8.0
+  - 8.1
 
 # This triggers builds to run on the new TravisCI infrastructure.
 # See: http://docs.travis-ci.com/user/workers/container-based-infrastructure/
@@ -20,8 +20,11 @@ env:
 
 matrix:
   include:
-    - php: 7.1
-      env: setup=lowest symfony="^4"
+    - php: 8.0
+      env: setup=lowest symfony="^5.2"
+    - php: 8.1
+      env: setup=lowest symfony="^6.1"
+
 
 install:
   - if [[ $symfony != '*' ]]; then travis_retry composer require symfony/http-foundation:${symfony} --no-update --no-interaction; fi
