@@ -51,7 +51,7 @@ class GetLastOrdersForMerchantsRequestTest extends AbstractRequestTest
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->size = random_int(1, 200);
         $this->from = 20181112260000;

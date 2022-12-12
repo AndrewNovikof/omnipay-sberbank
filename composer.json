@@ -17,12 +17,12 @@
     "payment"
   ],
   "require": {
-    "php": "^7.1",
-    "omnipay/common": "v3.0.3"
+    "php": "^8.1",
+    "omnipay/common": "^3.2"
   },
   "require-dev": {
-    "omnipay/tests": "^3",
-    "phpunit/phpunit": "^5.7|^6",
+    "omnipay/tests": "^4",
+    "phpunit/phpunit": "^8|^9",
     "squizlabs/php_codesniffer": "3.*"
   },
   "autoload": {

@@ -22,7 +22,7 @@ class ExtendedOrderStatusRequestTest extends AbstractRequestTest
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->orderId = mt_rand(1, 100);
 
