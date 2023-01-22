@@ -35,7 +35,8 @@ class AuthorizeRequest extends AbstractRequest
             'jsonParams',
             'sessionTimeoutSecs',
             'expirationDate',
-            'bindingId'
+            'bindingId',
+            'features',
         ];
 
         return $this->specifyAdditionalParameters($data, $additionalParams);
@@ -227,6 +228,23 @@ class AuthorizeRequest extends AbstractRequest
     public function setBindingId($value)
     {
         return $this->setParameter('bindingId', $value);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFeatures()
+    {
+        return $this->getParameter('features');
+    }
+
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public function setFeatures($value)
+    {
+        return $this->setParameter('features', $value);
     }
 
     /**
