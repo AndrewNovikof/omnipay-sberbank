@@ -137,7 +137,7 @@ class OrderStatusResponse extends AbstractResponse
      */
     public function getBindingInfo()
     {
-        return array_key_exists('BindingInfo', $this->data) ? $this->data['BindingInfo'] : [];
+        return array_key_exists('bindingInfo', $this->data) ? $this->data['bindingInfo'] : [];
     }
 
     /**

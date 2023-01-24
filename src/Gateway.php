@@ -62,8 +62,10 @@ class Gateway extends AbstractGateway
      */
     public function setTestMode($testMode)
     {
+        //TODO
+        //temp set http for test env!
         $this->setEndPoint(
-            $testMode ? 'https://3dsec.sberbank.ru/payment/rest/' : 'https://securepayments.sberbank.ru/payment/rest/'
+            $testMode ? 'http://3dsec.sberbank.ru/payment/rest/' : 'https://securepayments.sberbank.ru/payment/rest/'
         );
 
         return $this->setParameter('testMode', $testMode);
